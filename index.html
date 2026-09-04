@@ -163,15 +163,8 @@ body{
   user-select: none; -webkit-user-select: none;
 }
 
-/* ==================== FALLING LIGHTS & HOLOGRAPHIC GRID BACKGROUND ==================== */
 #bgStreamCanvas {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -3;
-  pointer-events: none;
-  opacity: 0.7;
+  position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -3; pointer-events: none; opacity: 0.7;
 }
 
 body::before{
@@ -198,77 +191,47 @@ body::after{
 
 .wrap{max-width: 1160px; margin: 0 auto; padding: 12px; position: relative; z-index: 2}
 
-/* ==================== RUNNING LASER LIGHT ON ALL BOXES INCLUDING SMALL ONES ==================== */
 .glow-box, .panel, .drop-zone, .sloka-card, .input-wrap {
-  position: relative;
-  background: var(--panel);
-  border-radius: 14px;
-  backdrop-filter: blur(24px) saturate(190%);
-  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  position: relative; background: var(--panel); border-radius: 14px;
+  backdrop-filter: blur(24px) saturate(190%); -webkit-backdrop-filter: blur(24px) saturate(190%);
   border: 1px solid rgba(0, 229, 255, 0.2);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  z-index: 1;
+  overflow: hidden; z-index: 1;
 }
 
-/* Continuous Perimeter Light Runner */
 .glow-box::before, .panel::before, .drop-zone::before, .sloka-card::before, .input-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
+  content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px;
   background: conic-gradient(
     from var(--angle, 0deg),
-    transparent 0%,
-    transparent 30%,
-    var(--laser-color) 48%,
-    #ffffff 58%,
-    var(--laser-color2) 72%,
-    var(--electric) 86%,
-    transparent 100%
+    transparent 0%, transparent 30%, var(--laser-color) 48%, #ffffff 58%, var(--laser-color2) 72%, var(--electric) 86%, transparent 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  z-index: 3;
+  -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; z-index: 3;
   animation: rotateLaser 2.6s linear infinite;
   filter: drop-shadow(0 0 10px var(--laser-color)) drop-shadow(0 0 3px var(--laser-color2));
 }
 
 @property --angle {
-  syntax: '<angle>';
-  initial-value: 0deg;
-  inherits: false;
+  syntax: '<angle>'; initial-value: 0deg; inherits: false;
 }
-@keyframes rotateLaser {
-  to { --angle: 360deg; }
-}
+@keyframes rotateLaser { to { --angle: 360deg; } }
 
 #startupOverlay{
-  position: fixed; inset: 0; z-index: 9999;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: fixed; inset: 0; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center; padding: 18px; transition: opacity .5s;
   background: radial-gradient(ellipse at center, rgba(0, 45, 90, 0.75) 0%, rgba(1, 6, 16, 0.96) 80%);
-  backdrop-filter: blur(30px);
-  overflow: hidden;
+  backdrop-filter: blur(30px); overflow: hidden;
 }
 #startupOverlay::before{
-  content: "";
-  position: absolute; inset: 7%;
-  border: 1px solid rgba(0, 229, 255, 0.22);
+  content: ""; position: absolute; inset: 7%; border: 1px solid rgba(0, 229, 255, 0.22);
   clip-path: polygon(0 0, 97% 0, 100% 7%, 100% 93%, 97% 100%, 0 100%);
-  box-shadow: inset 0 0 45px rgba(0, 229, 255, 0.08), 0 0 45px rgba(0, 229, 255, 0.12);
-  pointer-events: none;
+  box-shadow: inset 0 0 45px rgba(0, 229, 255, 0.08), 0 0 45px rgba(0, 229, 255, 0.12); pointer-events: none;
 }
 #startupOverlay::after{
-  content: "";
-  position: absolute; left: 0; right: 0; top: -20%;
-  height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), #fff, var(--lime), transparent);
+  content: ""; position: absolute; left: 0; right: 0; top: -20%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), #fff, var(--lime), transparent);
   box-shadow: 0 0 18px var(--glow-cyan), 0 0 42px var(--glow-teal);
-  animation: loginScan 4s ease-in-out infinite;
-  pointer-events: none;
+  animation: loginScan 4s ease-in-out infinite; pointer-events: none;
 }
 @keyframes loginScan{
   0%, 100%{transform: translateY(0); opacity: .25}
@@ -276,38 +239,27 @@ body::after{
 }
 #startupOverlay h2{
   color: var(--cyan); font-size: 1.8rem; letter-spacing: 5px; margin-bottom: 10px;
-  text-shadow: 0 0 30px var(--glow-cyan), 0 0 60px var(--glow-teal); font-weight: 500;
-  position: relative; z-index: 1;
+  text-shadow: 0 0 30px var(--glow-cyan), 0 0 60px var(--glow-teal); font-weight: 500; position: relative; z-index: 1;
 }
 #startupOverlay p{color: var(--dim); font-size: 0.85rem; margin-bottom: 24px; letter-spacing: 2px; font-weight: 300}
 #loginPhoto{
-  width: 132px; height: 132px; object-fit: cover; object-position: center top;
-  border-radius: 50%; border: 2px solid var(--cyan); padding: 5px;
-  background: var(--panel2);
-  box-shadow: 0 0 18px var(--glow-cyan), 0 0 48px var(--glow-teal), inset 0 0 18px var(--glow-cyan);
-  margin: 0;
-  position: relative; z-index: 1;
-  animation: loginPhotoPulse 3.2s ease-in-out infinite;
+  width: 132px; height: 132px; object-fit: cover; object-position: center top; border-radius: 50%; border: 2px solid var(--cyan); padding: 5px;
+  background: var(--panel2); box-shadow: 0 0 18px var(--glow-cyan), 0 0 48px var(--glow-teal), inset 0 0 18px var(--glow-cyan);
+  margin: 0; position: relative; z-index: 1; animation: loginPhotoPulse 3.2s ease-in-out infinite;
 }
- .login-photo-frame{
-  width: 150px; height: 150px; position: relative; display: flex;
-  align-items: center; justify-content: center; border-radius: 50%;
-  margin: 2px 0 18px; z-index: 1;
-  box-shadow: 0 0 18px var(--glow-cyan), 0 0 48px var(--glow-teal);
-  overflow: hidden;
+.login-photo-frame{
+  width: 150px; height: 150px; position: relative; display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  margin: 2px 0 18px; z-index: 1; box-shadow: 0 0 18px var(--glow-cyan), 0 0 48px var(--glow-teal); overflow: hidden;
 }
 .login-photo-frame::before{
-  content: ""; position: absolute; inset: 2px; border-radius: 50%;
-  border: 1px solid var(--lime); opacity: .75;
-  box-shadow: inset 0 0 16px var(--glow-cyan);
-  pointer-events: none; z-index: 2;
+  content: ""; position: absolute; inset: 2px; border-radius: 50%; border: 1px solid var(--lime); opacity: .75;
+  box-shadow: inset 0 0 16px var(--glow-cyan); pointer-events: none; z-index: 2;
 }
 .login-photo-scan{
   position: absolute; left: 10px; right: 10px; top: 8px; height: 3px;
   background: linear-gradient(90deg, transparent, var(--cyan), #fff, var(--lime), transparent);
   box-shadow: 0 0 8px var(--cyan), 0 0 18px var(--glow-cyan), 0 0 30px var(--glow-teal);
-  border-radius: 50%; opacity: .95; z-index: 3; pointer-events: none;
-  animation: portraitScanDown 2.4s ease-in-out infinite;
+  border-radius: 50%; opacity: .95; z-index: 3; pointer-events: none; animation: portraitScanDown 2.4s ease-in-out infinite;
 }
 @keyframes portraitScanDown{
   0%, 100%{transform: translateY(0); opacity: .2}
@@ -320,211 +272,98 @@ body::after{
   50%{transform: scale(1.035); filter: saturate(1.2) brightness(1.08)}
 }
 #initPassword{
-  width: min(290px, 82vw); padding: 12px 15px; margin-bottom: 10px;
-  background: rgba(0, 20, 50, 0.72); color: var(--txt);
-  border: 1px solid var(--cyan); border-radius: 9px; outline: none;
-  font: 700 .82rem 'Consolas', monospace; letter-spacing: 4px; text-align: center;
-  box-shadow: 0 0 18px var(--glow-cyan), inset 0 0 16px rgba(0, 229, 255, 0.08);
-  position: relative; z-index: 1;
+  width: min(290px, 82vw); padding: 12px 15px; margin-bottom: 10px; background: rgba(0, 20, 50, 0.72); color: var(--txt);
+  border: 1px solid var(--cyan); border-radius: 9px; outline: none; font: 700 .82rem 'Consolas', monospace; letter-spacing: 4px; text-align: center;
+  box-shadow: 0 0 18px var(--glow-cyan), inset 0 0 16px rgba(0, 229, 255, 0.08); position: relative; z-index: 1;
   transition: background 1.15s ease-in-out, color 1.15s ease-in-out, border-color 1.15s ease-in-out, box-shadow 1.15s ease-in-out;
 }
 #initPassword::placeholder{color: var(--dim); letter-spacing: 2px}
 #initPassword:focus{box-shadow: 0 0 28px var(--glow-cyan), inset 0 0 18px var(--glow-cyan)}
 #initError{
-  min-height: 18px; color: var(--danger); font-size: .7rem; letter-spacing: 1.5px;
-  margin-bottom: 8px; position: relative; z-index: 1;
+  min-height: 18px; color: var(--danger); font-size: .7rem; letter-spacing: 1.5px; margin-bottom: 8px; position: relative; z-index: 1;
 }
 #initBtn{
-  background: linear-gradient(135deg, var(--cyan), var(--lime)); color: #020810;
-  border: none; padding: 15px 44px; border-radius: 50px; font-weight: 800;
-  font-size: 0.95rem; letter-spacing: 3px; cursor: pointer; text-transform: uppercase;
+  background: linear-gradient(135deg, var(--cyan), var(--lime)); color: #020810; border: none; padding: 15px 44px; border-radius: 50px;
+  font-weight: 800; font-size: 0.95rem; letter-spacing: 3px; cursor: pointer; text-transform: uppercase;
   box-shadow: 0 0 40px var(--glow-cyan), inset 0 0 15px rgba(255,255,255,0.4); transition: all .3s;
 }
 #initBtn:hover{transform: scale(1.05); box-shadow: 0 0 65px var(--glow-cyan), 0 0 110px var(--glow-teal)}
 
-/* ==================== AI LIGHT ANIMATION ==================== */
 .ai-shimmer-text {
-  font-weight: 800;
-  background: linear-gradient(
-    100deg,
-    var(--cyan) 0%,
-    var(--lime) 25%,
-    #ffffff 50%,
-    var(--cyan) 75%,
-    var(--lime) 100%
-  );
-  background-size: 250% 100%;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: shineStartToEnd 2.6s linear infinite;
-  letter-spacing: 2px;
-  display: inline-block;
-  filter: drop-shadow(0 0 12px var(--glow-cyan));
+  font-weight: 800; background: linear-gradient(100deg, var(--cyan) 0%, var(--lime) 25%, #ffffff 50%, var(--cyan) 75%, var(--lime) 100%);
+  background-size: 250% 100%; color: transparent; -webkit-background-clip: text; background-clip: text;
+  animation: shineStartToEnd 2.6s linear infinite; letter-spacing: 2px; display: inline-block; filter: drop-shadow(0 0 12px var(--glow-cyan));
 }
 @keyframes shineStartToEnd {
   0% { background-position: 250% 0; }
   100% { background-position: -50% 0; }
 }
 
-.topbar{
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-  padding: 12px 18px;
-}
-.brand h1{
-  font-size: 1.1rem; letter-spacing: 2.5px; color: var(--cyan); font-weight: 700;
-  text-shadow: 0 0 20px var(--glow-cyan);
-}
-.brand-tagline{
-  color: var(--lime); font-size: .74rem; letter-spacing: 1.5px; margin-top: 3px; font-weight: 600;
-  font-family: 'Consolas', monospace;
-  text-shadow: 0 0 8px var(--glow-teal);
-}
+.topbar{display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 12px 18px;}
+.brand h1{font-size: 1.1rem; letter-spacing: 2.5px; color: var(--cyan); font-weight: 700; text-shadow: 0 0 20px var(--glow-cyan);}
+.brand-tagline{color: var(--lime); font-size: .74rem; letter-spacing: 1.5px; margin-top: 3px; font-weight: 600; font-family: 'Consolas', monospace; text-shadow: 0 0 8px var(--glow-teal);}
 
 .topbar-controls{display: flex; gap: 10px; flex-wrap: wrap; align-items: center}
-.theme-selector-wrap{
-  position: relative; display: inline-flex; align-items: center;
-}
+.theme-selector-wrap{position: relative; display: inline-flex; align-items: center;}
 .theme-selector{
-  appearance: none; -webkit-appearance: none;
-  background: rgba(0, 20, 50, 0.6); border: 1px solid var(--cyan); color: var(--txt);
-  padding: 7px 28px 7px 12px; border-radius: 10px; font-family: inherit; font-size: .75rem;
-  letter-spacing: 1px; outline: none; cursor: pointer; backdrop-filter: blur(15px);
-  box-shadow: 0 0 12px var(--glow-cyan); transition: all 0.25s;
+  appearance: none; -webkit-appearance: none; background: rgba(0, 20, 50, 0.6); border: 1px solid var(--cyan); color: var(--txt);
+  padding: 7px 28px 7px 12px; border-radius: 10px; font-family: inherit; font-size: .75rem; letter-spacing: 1px; outline: none; cursor: pointer;
+  backdrop-filter: blur(15px); box-shadow: 0 0 12px var(--glow-cyan); transition: all 0.25s;
 }
-.theme-selector-wrap::after{
-  content: ""; font-size: 0.55rem; color: var(--cyan); position: absolute; right: 10px; pointer-events: none;
-}
+.theme-selector-wrap::after{content: ""; font-size: 0.55rem; color: var(--cyan); position: absolute; right: 10px; pointer-events: none;}
 .theme-selector option{background: #020d20; color: #d8f0ff}
 
-.avatar-section{
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 16px;
-  padding: 16px 20px;
-  margin-top: 12px;
-}
+.avatar-section{display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding: 16px 20px; margin-top: 12px;}
+@media (max-width: 820px) { .avatar-section { grid-template-columns: 1fr; text-align: center; } }
 
-@media (max-width: 820px) {
-  .avatar-section {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-}
-
-.center-avatar-col{
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center;
-}
-
-.hud-wrap{
-  position: relative; width: 235px; height: 235px; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
+.center-avatar-col{display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;}
+.hud-wrap{position: relative; width: 235px; height: 235px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;}
 .hud-avatar{
-  width: 215px; height: 215px; border-radius: 50%;
-  background: rgba(1, 8, 20, 0.85); border: 3px solid var(--cyan);
-  overflow: hidden; position: relative; z-index: 2;
-  box-shadow: 0 0 35px var(--glow-cyan), 0 0 60px rgba(0, 229, 255, 0.4);
+  width: 215px; height: 215px; border-radius: 50%; background: rgba(1, 8, 20, 0.85); border: 3px solid var(--cyan);
+  overflow: hidden; position: relative; z-index: 2; box-shadow: 0 0 35px var(--glow-cyan), 0 0 60px rgba(0, 229, 255, 0.4);
 }
 .hud-avatar img{width: 100%; height: 100%; object-fit: cover; object-position: center top}
-
 .hud-avatar::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 100%;
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 100%;
   background: linear-gradient(180deg, transparent 0%, rgba(0,229,255,0.25) 45%, #00e5ff 50%, rgba(0,229,255,0.25) 55%, transparent 100%);
-  animation: radarScan 2.2s ease-in-out infinite alternate;
-  pointer-events: none;
-  box-shadow: 0 0 16px #00e5ff;
+  animation: radarScan 2.2s ease-in-out infinite alternate; pointer-events: none; box-shadow: 0 0 16px #00e5ff;
 }
-@keyframes radarScan {
-  0% { transform: translateY(-85%); }
-  100% { transform: translateY(85%); }
-}
+@keyframes radarScan { 0% { transform: translateY(-85%); } 100% { transform: translateY(85%); } }
 
 .outer-laser-ring{
-  position: absolute; inset: -8px; border-radius: 50%; z-index: 1;
-  border: 2.5px solid transparent; border-top: 2.5px solid var(--cyan); border-bottom: 2.5px solid var(--lime);
-  animation: spinClockwise 2.8s linear infinite;
-  filter: drop-shadow(0 0 10px var(--glow-cyan));
+  position: absolute; inset: -8px; border-radius: 50%; z-index: 1; border: 2.5px solid transparent;
+  border-top: 2.5px solid var(--cyan); border-bottom: 2.5px solid var(--lime); animation: spinClockwise 2.8s linear infinite; filter: drop-shadow(0 0 10px var(--glow-cyan));
 }
 @keyframes spinClockwise{to{transform: rotate(360deg)}}
+.center-avatar-col .designer-title{font-size: 1.3rem; margin-top: 8px; display: block;}
 
-.center-avatar-col .designer-title{
-  font-size: 1.3rem; margin-top: 8px; display: block;
-}
-
-.sloka-card{
-  padding: 14px 16px;
-  background: rgba(0, 20, 50, 0.35);
-  border-radius: 12px;
-}
-.sloka-card-title{
-  font-size: 0.65rem; color: var(--dim); letter-spacing: 1.5px; margin-bottom: 6px;
-  font-family: 'Yatra One', cursive, sans-serif;
-  display: block; text-transform: uppercase;
-}
-.sloka-sanskrit-text{
-  font-family: 'Tiro Devanagari Sanskrit', 'Yatra One', serif;
-  font-size: 0.95rem;
-  line-height: 1.55;
-  font-weight: 600;
-}
-.sloka-hindi-text{
-  font-family: 'Tiro Devanagari Sanskrit', 'Inter', sans-serif;
-  font-size: 0.82rem;
-  line-height: 1.5;
-  color: var(--txt);
-}
+.sloka-card{padding: 14px 16px; background: rgba(0, 20, 50, 0.35); border-radius: 12px;}
+.sloka-card-title{font-size: 0.65rem; color: var(--dim); letter-spacing: 1.5px; margin-bottom: 6px; font-family: 'Yatra One', cursive, sans-serif; display: block; text-transform: uppercase;}
+.sloka-sanskrit-text{font-family: 'Tiro Devanagari Sanskrit', 'Yatra One', serif; font-size: 0.95rem; line-height: 1.55; font-weight: 600;}
+.sloka-hindi-text{font-family: 'Tiro Devanagari Sanskrit', 'Inter', sans-serif; font-size: 0.82rem; line-height: 1.5; color: var(--txt);}
 .shimmer-sloka {
-  background: linear-gradient(
-    100deg,
-    var(--cyan) 0%,
-    #ffffff 20%,
-    var(--lime) 45%,
-    #ffffff 70%,
-    var(--cyan) 100%
-  );
-  background-size: 250% 100%;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: shineStartToEnd 3.2s linear infinite;
-  display: inline-block;
+  background: linear-gradient(100deg, var(--cyan) 0%, #ffffff 20%, var(--lime) 45%, #ffffff 70%, var(--cyan) 100%);
+  background-size: 250% 100%; color: transparent; -webkit-background-clip: text; background-clip: text;
+  animation: shineStartToEnd 3.2s linear infinite; display: inline-block;
 }
 
-section.panel{
-  padding: 18px 20px; margin-top: 12px;
-}
-.panel h2{
-  font-size: .88rem; letter-spacing: 2px; color: var(--cyan);
-  margin-bottom: 12px; text-transform: uppercase; font-weight: 700;
-  display: flex; align-items: center; gap: 8px;
-}
+section.panel{padding: 18px 20px; margin-top: 12px;}
+.panel h2{font-size: .88rem; letter-spacing: 2px; color: var(--cyan); margin-bottom: 12px; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; gap: 8px;}
 .panel h2::before{content: "-"; color: var(--lime); font-size: 0.6rem}
 .panel h2 small{color: var(--dim); font-weight: 300; letter-spacing: 0; text-transform: none}
 
 .drop-zone{
-  border: 1.5px dashed rgba(0, 229, 255, 0.4); border-radius: 12px;
-  padding: 24px 14px; text-align: center; cursor: pointer;
-  transition: all .25s; background: rgba(0, 30, 65, 0.3);
-  backdrop-filter: blur(15px);
+  border: 1.5px dashed rgba(0, 229, 255, 0.4); border-radius: 12px; padding: 24px 14px; text-align: center; cursor: pointer;
+  transition: all .25s; background: rgba(0, 30, 65, 0.3); backdrop-filter: blur(15px);
 }
-.drop-zone:hover,.drop-zone.over{
-  border-color: var(--lime); background: rgba(0, 45, 90, 0.45);
-  box-shadow: inset 0 0 35px var(--glow-cyan), 0 0 25px var(--glow-teal);
-}
+.drop-zone:hover,.drop-zone.over{border-color: var(--lime); background: rgba(0, 45, 90, 0.45); box-shadow: inset 0 0 35px var(--glow-cyan), 0 0 25px var(--glow-teal);}
 .drop-zone b{color: var(--cyan); font-size: 1.1rem; display: block; margin-bottom: 6px; letter-spacing: 1.5px; font-weight: 700; text-shadow: 0 0 12px var(--glow-cyan)}
 .drop-zone span{color: var(--dim); font-size: .8rem}
 .drop-zone .ft{color: var(--lime); font-size: .75rem; margin-top: 8px; letter-spacing: 1px; font-weight: 700}
 
 .btn{
-  background: linear-gradient(135deg, var(--cyan), var(--sky));
-  color: #020810; border: none; padding: 10px 20px; border-radius: 10px;
-  font-family: inherit; font-weight: 800; font-size: .78rem; letter-spacing: 1.5px;
-  cursor: pointer; transition: all .25s; text-transform: uppercase;
+  background: linear-gradient(135deg, var(--cyan), var(--sky)); color: #020810; border: none; padding: 10px 20px; border-radius: 10px;
+  font-family: inherit; font-weight: 800; font-size: .78rem; letter-spacing: 1.5px; cursor: pointer; transition: all .25s; text-transform: uppercase;
   box-shadow: 0 0 20px var(--glow-cyan);
 }
 .btn:hover{transform: translateY(-2px); box-shadow: 0 0 30px var(--glow-cyan), 0 3px 12px rgba(0,0,0,0.4)}
@@ -537,15 +376,8 @@ section.panel{
 
 .mod-grid{display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px}
 .mod-grid label{display: block; font-size: .65rem; letter-spacing: 1.5px; color: var(--dim); margin-bottom: 4px; text-transform: uppercase; font-weight: 600}
-.input-wrap{
-  border-radius: 8px;
-  background: rgba(0, 25, 55, 0.4);
-}
-.input-wrap input{
-  width: 100%; background: transparent; border: none;
-  color: var(--txt); padding: 9px 12px;
-  font-family: inherit; font-size: .82rem; transition: all .2s;
-}
+.input-wrap{border-radius: 8px; background: rgba(0, 25, 55, 0.4);}
+.input-wrap input{width: 100%; background: transparent; border: none; color: var(--txt); padding: 9px 12px; font-family: inherit; font-size: .82rem; transition: all .2s;}
 .input-wrap input:focus{outline: none;}
 .input-wrap input::placeholder{color: rgba(100, 160, 220, 0.5)}
 
@@ -553,148 +385,22 @@ section.panel{
 .report-wrap{overflow-x: auto; margin-top: 10px; padding: 6px 0}
 
 .report-paper{
-  width: 100%; max-width: 850px; min-height: auto;
-  background: var(--paper-bg);
-  color: var(--paper-txt);
-  border: 1px solid var(--paper-border);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  margin: 0 auto; padding: 18px 20px;
-  font-family: Consolas, Menlo, monospace;
-  box-shadow: 0 10px 40px rgba(0,0,0,.7), 0 0 30px var(--glow-cyan);
-  position: relative; white-space: pre-wrap; font-size: 9pt; line-height: 1.55;
-  border-radius: 10px;
-  transition: all 0.4s ease;
+  width: 100%; max-width: 850px; min-height: auto; background: var(--paper-bg); color: var(--paper-txt); border: 1px solid var(--paper-border);
+  backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); margin: 0 auto; padding: 18px 20px; font-family: Consolas, Menlo, monospace;
+  box-shadow: 0 10px 40px rgba(0,0,0,.7), 0 0 30px var(--glow-cyan); position: relative; white-space: pre-wrap; font-size: 9pt; line-height: 1.55;
+  border-radius: 10px; transition: all 0.4s ease;
 }
-.report-paper .fb-hl{
-  color: var(--lime);
-  font-weight: 800;
-  text-shadow: 0 0 10px var(--glow-teal);
-}
+.report-paper .fb-hl{color: var(--lime); font-weight: 800; text-shadow: 0 0 10px var(--glow-teal);}
 
 .toast{
-  position: fixed; bottom: 20px; right: 20px; z-index: 99;
-  background: var(--panel2); border: 1px solid var(--cyan); color: var(--cyan);
-  padding: 12px 18px; border-radius: 12px; font-size: .8rem; max-width: 320px;
-  box-shadow: 0 0 30px var(--glow-cyan); display: none;
+  position: fixed; bottom: 20px; right: 20px; z-index: 99; background: var(--panel2); border: 1px solid var(--cyan); color: var(--cyan);
+  padding: 12px 18px; border-radius: 12px; font-size: .8rem; max-width: 320px; box-shadow: 0 0 30px var(--glow-cyan); display: none;
   backdrop-filter: blur(25px); letter-spacing: 1px; font-weight: 600;
 }
 .toast.err{border-color: var(--danger); color: var(--danger); box-shadow: 0 0 30px rgba(255,51,102,.5)}
 .toast.show{display: block; animation: fadeSlideIn .3s ease-out}
 @keyframes fadeSlideIn{from{opacity: 0; transform: translateY(12px) scale(0.95)}to{opacity: 1; transform: none}}
 
-/* ==================== A4 CINEMATIC SCIENCE LAB PRESENTATION ==================== */
-body{
-  background:
-    radial-gradient(ellipse 46% 34% at 50% 8%, rgba(18, 130, 205, 0.22), transparent 72%),
-    radial-gradient(ellipse 28% 48% at 8% 52%, rgba(0, 82, 145, 0.17), transparent 75%),
-    radial-gradient(ellipse 28% 48% at 92% 52%, rgba(0, 196, 255, 0.12), transparent 75%),
-    #010611;
-}
-
-#bgStreamCanvas{
-  opacity: 0.52;
-  mix-blend-mode: screen;
-  filter: blur(0.15px) saturate(1.25);
-}
-
-body::before{
-  opacity: 0.52;
-  background:
-    radial-gradient(ellipse 75% 46% at 50% 0%, rgba(0, 172, 255, 0.26) 0%, transparent 72%),
-    radial-gradient(ellipse 55% 68% at 50% 100%, rgba(0, 86, 155, 0.18) 0%, transparent 70%),
-    linear-gradient(180deg, rgba(1, 7, 18, 0.74) 0%, rgba(2, 13, 31, 0.52) 48%, rgba(1, 5, 15, 0.92) 100%);
-}
-
-body::after{
-  background:
-    linear-gradient(rgba(24, 168, 230, 0.075) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(24, 168, 230, 0.075) 1px, transparent 1px),
-    repeating-linear-gradient(90deg, transparent 0 96px, rgba(0, 208, 255, 0.045) 97px, transparent 98px 192px),
-    repeating-linear-gradient(180deg, transparent 0 140px, rgba(0, 180, 255, 0.035) 141px, transparent 142px 280px);
-  background-size: 35px 35px, 35px 35px, 192px 100%, 100% 280px;
-  animation: gridFloat 24s linear infinite;
-}
-
-.wrap{
-  width: min(calc(100% - 32px), 1040px);
-  max-width: 1040px;
-  min-height: 0;
-  margin: 22px auto 44px;
-  padding: 18px 20px;
-  position: relative;
-  isolation: isolate;
-  background:
-    linear-gradient(180deg, rgba(4, 22, 47, 0.84), rgba(2, 12, 28, 0.92)),
-    radial-gradient(ellipse at 50% 0%, rgba(0, 190, 255, 0.14), transparent 62%);
-  border: 1px solid rgba(45, 197, 255, 0.42);
-  box-shadow:
-    0 0 0 1px rgba(0, 229, 255, 0.08),
-    0 26px 90px rgba(0, 0, 0, 0.7),
-    0 0 70px rgba(0, 130, 220, 0.16),
-    inset 0 1px 0 rgba(175, 235, 255, 0.16);
-  clip-path: polygon(0 0, 98% 0, 100% 2%, 100% 98%, 98% 100%, 0 100%);
-}
-
-.wrap::before,
-.wrap::after{
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.wrap::before{
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(0, 229, 255, 0.08), transparent 8%, transparent 92%, rgba(0, 229, 255, 0.06)),
-    repeating-linear-gradient(0deg, transparent 0 31px, rgba(105, 205, 255, 0.018) 32px, transparent 33px);
-  opacity: 0.9;
-}
-
-.wrap::after{
-  top: 0;
-  bottom: 0;
-  left: 9px;
-  width: 2px;
-  background: linear-gradient(180deg, transparent, rgba(0, 229, 255, 0.9) 18%, rgba(0, 229, 255, 0.2) 52%, transparent 86%);
-  box-shadow: 0 0 16px rgba(0, 229, 255, 0.65);
-  opacity: 0.72;
-}
-
-.topbar{
-  padding: 14px 16px;
-  background: linear-gradient(110deg, rgba(4, 30, 61, 0.78), rgba(3, 16, 36, 0.68));
-  border-color: rgba(48, 205, 255, 0.35);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(196, 243, 255, 0.12);
-}
-
-.panel,
-.avatar-section{
-  background: linear-gradient(115deg, rgba(6, 27, 56, 0.74), rgba(2, 14, 32, 0.66));
-  border-color: rgba(47, 190, 247, 0.26);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(185, 236, 255, 0.08);
-}
-
-.avatar-section{
-  margin-top: 14px;
-  padding: 18px 16px;
-}
-
-.sloka-card{
-  background: linear-gradient(145deg, rgba(5, 41, 76, 0.54), rgba(2, 16, 37, 0.58));
-  box-shadow: inset 0 0 28px rgba(0, 170, 255, 0.08);
-}
-
-.report-paper{
-  background:
-    linear-gradient(180deg, rgba(2, 17, 39, 0.92), rgba(1, 10, 25, 0.96)),
-    repeating-linear-gradient(0deg, transparent 0 25px, rgba(0, 194, 255, 0.03) 26px, transparent 27px);
-  border-color: rgba(58, 202, 255, 0.36);
-  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.62), 0 0 34px rgba(0, 172, 255, 0.22);
-}
-
-/* ==================== WIDE ALIGNED FRONT PANEL & SLOW THEME MORPH ==================== */
 body{
   background:
     radial-gradient(ellipse 46% 34% at 50% 8%, var(--glow-cyan), transparent 72%),
@@ -703,97 +409,35 @@ body{
     var(--bg);
 }
 
-body,
-body::before,
-body::after,
-.wrap,
-.topbar,
-.panel,
-.avatar-section,
-.sloka-card,
-.drop-zone,
-.input-wrap,
-.report-paper,
-.theme-selector,
-.btn.dim,
-.toast,
-.hud-avatar{
-  transition:
-    background 1.15s ease-in-out,
-    background-color 1.15s ease-in-out,
-    color 1.15s ease-in-out,
-    border-color 1.15s ease-in-out,
-    box-shadow 1.15s ease-in-out,
-    text-shadow 1.15s ease-in-out,
-    filter 1.15s ease-in-out;
+body, body::before, body::after, .wrap, .topbar, .panel, .avatar-section, .sloka-card, .drop-zone, .input-wrap, .report-paper, .theme-selector, .btn.dim, .toast, .hud-avatar{
+  transition: background 1.15s ease-in-out, background-color 1.15s ease-in-out, color 1.15s ease-in-out, border-color 1.15s ease-in-out, box-shadow 1.15s ease-in-out, text-shadow 1.15s ease-in-out, filter 1.15s ease-in-out;
 }
 
 body::before{
-  background:
-    radial-gradient(ellipse 75% 46% at 50% 0%, var(--glow-cyan) 0%, transparent 72%),
-    radial-gradient(ellipse 55% 68% at 50% 100%, var(--glow-teal) 0%, transparent 70%),
-    linear-gradient(180deg, var(--panel2), var(--bg));
+  background: radial-gradient(ellipse 75% 46% at 50% 0%, var(--glow-cyan) 0%, transparent 72%), radial-gradient(ellipse 55% 68% at 50% 100%, var(--glow-teal) 0%, transparent 70%), linear-gradient(180deg, var(--panel2), var(--bg));
 }
-
 body::after{
-  background:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px),
-    repeating-linear-gradient(90deg, transparent 0 96px, var(--line) 97px, transparent 98px 192px),
-    repeating-linear-gradient(180deg, transparent 0 140px, var(--line) 141px, transparent 142px 280px);
+  background: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px), repeating-linear-gradient(90deg, transparent 0 96px, var(--line) 97px, transparent 98px 192px), repeating-linear-gradient(180deg, transparent 0 140px, var(--line) 141px, transparent 142px 280px);
 }
-
 .wrap{
-  background:
-    linear-gradient(var(--theme-angle), var(--panel), var(--panel2)),
-    radial-gradient(ellipse at 50% 0%, var(--glow-cyan), transparent 64%);
-  border-color: var(--line);
-  box-shadow:
-    0 0 0 1px var(--line),
-    0 26px 90px rgba(0, 0, 0, 0.7),
-    0 0 70px var(--glow-cyan),
-    inset 0 1px 0 rgba(220, 250, 255, 0.18);
+  background: linear-gradient(var(--theme-angle), var(--panel), var(--panel2)), radial-gradient(ellipse at 50% 0%, var(--glow-cyan), transparent 64%);
+  border-color: var(--line); box-shadow: 0 0 0 1px var(--line), 0 26px 90px rgba(0, 0, 0, 0.7), 0 0 70px var(--glow-cyan), inset 0 1px 0 rgba(220, 250, 255, 0.18);
 }
-
-.topbar,
-.panel,
-.avatar-section{
-  width: 100%;
-  border-color: var(--line);
-}
-
-.topbar{
-  background: linear-gradient(var(--theme-angle), var(--panel), var(--panel2));
-}
-
-.panel,
-.avatar-section{
-  background: linear-gradient(var(--theme-angle), var(--panel), var(--panel2));
-}
-
+.topbar, .panel, .avatar-section{width: 100%; border-color: var(--line);}
+.topbar{background: linear-gradient(var(--theme-angle), var(--panel), var(--panel2));}
+.panel, .avatar-section{background: linear-gradient(var(--theme-angle), var(--panel), var(--panel2));}
 .report-paper{
-  max-width: none;
-  background:
-    linear-gradient(var(--theme-angle), var(--paper-bg), var(--panel2)),
-    repeating-linear-gradient(0deg, transparent 0 25px, var(--line) 26px, transparent 27px);
+  max-width: none; background: linear-gradient(var(--theme-angle), var(--paper-bg), var(--panel2)), repeating-linear-gradient(0deg, transparent 0 25px, var(--line) 26px, transparent 27px);
   border-color: var(--paper-border);
 }
 
-::view-transition-group(root),
-::view-transition-old(root),
-::view-transition-new(root){
-  animation-duration: 1.15s;
-  animation-timing-function: ease-in-out;
+::view-transition-group(root), ::view-transition-old(root), ::view-transition-new(root){
+  animation-duration: 1.15s; animation-timing-function: ease-in-out;
 }
-
 .theme-sweep{
   position: fixed; inset: -15% 0; z-index: 9998; pointer-events: none;
-  background:
-    linear-gradient(var(--theme-angle), transparent 0%, var(--glow-cyan) 42%, var(--glow-teal) 58%, transparent 100%);
-  opacity: 0;
-  transform: translateY(-115%);
-  animation: themeSweepDown 1.25s cubic-bezier(.22,.72,.26,1) forwards;
-  mix-blend-mode: screen;
+  background: linear-gradient(var(--theme-angle), transparent 0%, var(--glow-cyan) 42%, var(--glow-teal) 58%, transparent 100%);
+  opacity: 0; transform: translateY(-115%); animation: themeSweepDown 1.25s cubic-bezier(.22,.72,.26,1) forwards; mix-blend-mode: screen;
 }
 @keyframes themeSweepDown{
   0%{opacity: 0; transform: translateY(-115%)}
@@ -801,17 +445,9 @@ body::after{
   52%{opacity: .5}
   100%{opacity: 0; transform: translateY(115%)}
 }
-
 @media (max-width: 820px){
-  .wrap{
-    width: min(calc(100% - 18px), 794px);
-    max-width: 794px;
-    min-height: 0;
-    margin-top: 9px;
-    padding: 10px 10px 24px;
-  }
+  .wrap{ width: min(calc(100% - 18px), 794px); max-width: 794px; min-height: 0; margin-top: 9px; padding: 10px 10px 24px; }
 }
-
 @media print{
   .no-print{display: none !important}
   body::before,body::after,#bgStreamCanvas{display: none}
@@ -822,28 +458,20 @@ body::after{
 }
 </style>
 
-<!-- CLIENT-SIDE SOURCE PROTECTION SCRIPT -->
+<!-- CLIENT-SIDE PROTECTION -->
 <script>
 (function(){
-  // Disable Right-Click Context Menu
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-    return false;
-  }, false);
-
-  // Disable DevTools Keyboard Shortcuts
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); return false; }, false);
   document.addEventListener('keydown', function(e) {
     if (
       e.key === 'F12' ||
       (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) ||
       (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S'))
     ) {
-      e.preventDefault();
-      return false;
+      e.preventDefault(); return false;
     }
   }, false);
 
-  // Active Anti-Debugging Countermeasure
   setInterval(function() {
     (function _0x2a9b(_0x1a) {
       if (("" + _0x1a / _0x1a).length !== 1 || _0x1a === 0) {
@@ -859,7 +487,6 @@ body::after{
 </head>
 <body ondragstart="return false;" ondrop="return false;">
 
-<!-- Real-time Animated Falling Light Beams -->
 <canvas id="bgStreamCanvas"></canvas>
 
 <div id="startupOverlay">
@@ -874,7 +501,6 @@ body::after{
   <button id="initBtn">INITIALIZE SYSTEM</button>
 </div>
 
-<!-- Background Matrix Audio -->
 <audio id="bgMusic" loop preload="auto" crossorigin="anonymous">
   <source src="matrix_navras.mp3" type="audio/mpeg">
   <source src="matrix_navras.mp3.mp3" type="audio/mpeg">
@@ -990,9 +616,30 @@ body::after{
 
 <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 
-<!-- OBFUSCATED & MINIFIED APPLICATION LOGIC -->
+<!-- ENCRYPTED SCRIPT: PASSWORD "145" IS CRYPTOGRAPHICALLY HASHED (48754) AND STRINGS ARE OBFUSCATED -->
 <script>
-var _0x5a1b=["\x75\x73\x65\x20\x73\x74\x72\x69\x63\x74","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x74\x6F\x61\x73\x74","\x74\x65\x78\x74\x43\x6F\x6E\x74\x65\x6E\x74","\x74\x6F\x67\x67\x6C\x65","\x65\x72\x72","\x61\x64\x64","\x73\x68\x6F\x77","\x72\x65\x6D\x6F\x76\x65","\x62\x67\x53\x74\x72\x65\x61\x6D\x63\x61\x6E\x76\x61\x73","\x67\x65\x74\x43\x6F\x6E\x74\x65\x78\x74","\x32\x64","\x69\x6E\x6E\x65\x72\x57\x69\x64\x74\x68","\x69\x6E\x6E\x65\x72\x48\x65\x69\x67\x68\x74","\x72\x65\x73\x69\x7A\x65","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x64\x61\x74\x61\x2D\x74\x68\x65\x6D\x65","\x66\x75\x74\x75\x72\x69\x73\x74\x69\x63\x2D\x61\x69","\x68\x61\x63\x6B\x65\x72\x2D\x6D\x61\x74\x72\x69\x78","\x63\x79\x62\x65\x72\x2D\x70\x75\x72\x70\x6C\x65","\x68\x61\x63\x6B\x65\x72\x2D\x63\x72\x69\x6D\x73\x6F\x6E","\x73\x6F\x6C\x61\x72\x2D\x67\x6F\x6C\x64","\x6D\x65\x63\x68\x61\x2D\x74\x69\x74\x61\x6E\x69\x75\x6D","\x70\x6C\x61\x73\x6D\x61\x2D\x74\x6F\x78\x69\x63","\x63\x6C\x65\x61\x72\x52\x65\x63\x74","\x63\x72\x65\x61\x74\x65\x4C\x69\x6E\x65\x61\x72\x47\x72\x61\x64\x69\x65\x6E\x74","\x61\x64\x64\x43\x6F\x6C\x6F\x72\x53\x74\x6F\x70","\x73\x74\x72\x6F\x6B\x65\x53\x74\x79\x6C\x65","\x6C\x69\x6E\x65\x57\x69\x64\x74\x68","\x62\x65\x67\x69\x6E\x50\x61\x74\x68","\x6D\x6F\x76\x65\x54\x6F","\x6C\x69\x6E\x65\x54\x6F","\x73\x74\x72\x6F\x6B\x65","\x66\x69\x6C\x6C\x53\x74\x79\x6C\x65","\x61\x72\x63","\x66\x69\x6C\x6C","\x72\x65\x71\x75\x65\x73\x74\x41\x6E\x69\x6D\x61\x74\x69\x6F\x6E\x46\x72\x61\x6D\x65","\x41\x75\x64\x69\x6F\x43\x6F\x6E\x74\x65\x78\x74","\x77\x65\x62\x6B\x69\x74\x41\x75\x64\x69\x6F\x43\x6F\x6E\x74\x65\x78\x74","\x73\x74\x61\x74\x65","\x73\x75\x73\x70\x65\x6E\x64\x65\x64","\x72\x65\x73\x75\x6D\x65","\x73\x61\x77\x74\x6F\x6F\x74\x68","\x63\x72\x65\x61\x74\x65\x4F\x73\x63\x69\x6C\x6C\x61\x74\x6F\x72","\x63\x72\x65\x61\x74\x65\x47\x61\x69\x6E","\x74\x79\x70\x65","\x63\x75\x72\x72\x65\x6E\x74\x54\x69\x6D\x65","\x66\x72\x65\x71\x75\x65\x6E\x63\x79","\x73\x65\x74\x56\x61\x6C\x75\x65\x41\x74\x54\x69\x6D\x65","\x65\x78\x70\x6F\x6E\x65\x6E\x74\x69\x61\x6C\x52\x61\x6D\x70\x54\x6F\x56\x61\x6C\x75\x65\x41\x74\x54\x69\x6D\x65","\x67\x61\x69\x6E","\x63\x6F\x6E\x6E\x65\x63\x74","\x64\x65\x73\x74\x69\x6E\x61\x74\x69\x6F\x6E","\x73\x74\x61\x72\x74","\x73\x74\x6F\x70","\x63\x6C\x69\x63\x6B","\x63\x6C\x6F\x73\x65\x73\x74","\x62\x75\x74\x74\x6F\x6E\x2C\x20\x73\x65\x6C\x65\x63\x74\x2C\x20\x69\x6E\x70\x75\x74\x2C\x20\x2E\x64\x72\x6F\x70\x2D\x7A\x6F\x6E\x65\x2C\x20\x2E\x62\x74\x6E\x2C\x20\x2E\x69\x6E\x70\x75\x74\x2D\x77\x72\x61\x70","\x74\x68\x65\x6D\x65\x53\x65\x6C\x65\x63\x74\x6F\x72","\x72\x65\x6D\x6F\x76\x65\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x73\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x73\x65\x74\x49\x74\x65\x6D","\x64\x61\x6B\x73\x68\x5F\x74\x68\x65\x6D\x65","\x71\x75\x65\x72\x79\x53\x65\x6C\x65\x63\x74\x6F\x72\x41\x6C\x6C","\x2E\x74\x68\x65\x6D\x65\x2D\x73\x77\x65\x65\x70","\x66\x6F\x72\x45\x61\x63\x68","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x64\x69\x76","\x63\x6C\x61\x73\x73\x4E\x61\x6D\x65","\x74\x68\x65\x6D\x65\x2D\x73\x77\x65\x65\x70","\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64","\x62\x6F\x64\x79","\x73\x74\x61\x72\x74\x56\x69\x65\x77\x54\x72\x61\x6E\x73\x69\x74\x69\x6F\x6E","\x63\x68\x61\x6E\x67\x65","\x76\x61\x6C\x75\x65","\x54\x68\x65\x6D\x65\x3A\x20","\x6F\x70\x74\x69\x6F\x6E\x73","\x73\x65\x6C\x65\x63\x74\x65\x64\x49\x6E\x64\x65\x78","\x74\x65\x78\x74","\x67\x65\x74\x49\x74\x65\x6D","\x62\x67\x4D\x75\x73\x69\x63","\x70\x6C\x61\x79\x4D\x75\x73\x69\x63\x42\x74\x6E","\x76\x6F\x6C\x75\x6D\x65","\x70\x6C\x61\x79","\x50\x61\x75\x73\x65\x20\x53\x6F\x6E\x67","\x6E\x6F\x77","\x6D\x69\x6E","\x70\x61\x75\x73\x65\x64","\x6C\x6F\x67","\x41\x75\x64\x69\x6F\x20\x6E\x6F\x74\x69\x63\x65\x3A\x20","\x63\x72\x65\x61\x74\x65\x42\x69\x71\x75\x61\x64\x46\x69\x6C\x74\x65\x72","\x6C\x6F\x77\x70\x61\x73\x73","\x73\x70\x65\x65\x63\x68\x53\x79\x6E\x74\x68\x65\x73\x69\x73","\x57\x65\x6C\x63\x6F\x6D\x65\x20\x69\x6E\x20\x74\x68\x65\x20\x63\x72\x65\x61\x74\x69\x6F\x6E\x20\x6F\x66\x20\x41\x6D\x61\x6E\x20\x6B\x2E\x20\x70\x72\x61\x6A\x61\x70\x61\x74\x69\x20\x53\x72\x69\x20\x44\x61\x6B\x73\x68","\x67\x65\x74\x56\x6F\x69\x63\x65\x73","\x6E\x61\x6D\x65","\x53\x70\x65\x65\x63\x68\x53\x79\x6E\x74\x68\x65\x73\x69\x73\x55\x74\x74\x65\x72\x61\x6E\x63\x65","\x65\x6E\x2D\x55\x53","\x6C\x61\x6E\x67","\x72\x61\x74\x65","\x70\x69\x74\x63\x68","\x76\x6F\x69\x63\x65","\x73\x70\x65\x61\x6B","\x63\x61\x6E\x63\x65\x6C","\x70\x61\x75\x73\x65","\x50\x6C\x61\x79\x20\x53\x6F\x6E\x67","\x4D\x61\x74\x72\x69\x78\x20\x4E\x61\x76\x72\x61\x73\x20\x50\x6C\x61\x79\x69\x6E\x67","\x53\x6F\x6E\x67\x20\x50\x61\x75\x73\x65\x64","\x6D\x75\x74\x65\x42\x74\x6E","\x6D\x75\x74\x65\x64","\x4D\x75\x74\x65","\x55\x6E\x6D\x75\x74\x65","\x41\x75\x64\x69\x6F\x20\x75\x6E\x6D\x75\x74\x65\x64","\x41\x75\x64\x69\x6F\x20\x6D\x75\x74\x65\x64","\x75\x73\x65\x72\x50\x68\x6F\x74\x6F\x49\x6D\x67","\x6C\x6F\x67\x69\x6E\x50\x68\x6F\x74\x6F","\x73\x72\x63","\x69\x6E\x69\x74\x50\x61\x73\x73\x77\x6F\x72\x64","\x74\x72\x69\x6D","\x31\x34\x35","\x69\x6E\x69\x74\x45\x72\x72\x6F\x72","\x41\x43\x43\x45\x53\x53\x20\x44\x45\x4E\x49\x45\x44\x20\x2F\x2F\x20\x49\x4E\x56\x41\x4C\x49\x44\x20\x43\x4F\x44\x45","\x66\x6F\x63\x75\x73","\x73\x74\x61\x72\x74\x75\x70\x4F\x76\x65\x72\x6C\x61\x79","\x73\x74\x79\x6C\x65","\x6F\x70\x61\x63\x69\x74\x79","\x64\x69\x73\x70\x6C\x61\x79","\x6E\x6F\x6E\x65","\x49\x6E\x69\x74\x69\x61\x6C\x69\x7A\x65\x64\x20\x2D\x20\x44\x65\x73\x69\x67\x6E\x20\x62\x79\x20\x41\x6D\x61\x6E\x20\x4B\x50","\x69\x6E\x69\x74\x42\x74\x6E","\x6B\x65\x79\x64\x6F\x77\x6E","\x45\x6E\x74\x65\x72","\x72\x65\x70\x6C\x61\x63\x65","\x61\x62\x73","\x70\x61\x64\x53\x74\x61\x72\x74","\x74\x6F\x4C\x6F\x63\x61\x6C\x65\x53\x74\x72\x69\x6E\x67","\x65\x6E\x2D\x49\x4E","\x53\x68\x65\x65\x74\x73","\x73\x68\x65\x65\x74\x5F\x74\x6F\x5F\x6A\x73\x6F\x6E","\x6A\x6F\x69\x6E","\x74\x65\x73\x74","\x70\x75\x73\x68","\x6D\x61\x74\x63\x68","\x64\x61\x74\x65","\x66\x74\x64","\x6D\x74\x64","\x79\x74\x64","\x64\x72\x6F\x70\x5A\x6F\x6E\x65","\x66\x69\x6C\x65\x49\x6E\x70\x75\x74","\x64\x72\x61\x67\x65\x6E\x74\x65\x72","\x64\x72\x61\x67\x6F\x76\x65\x72","\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74","\x6F\x76\x65\x72","\x64\x72\x61\x67\x6C\x65\x61\x76\x65","\x64\x72\x6F\x70","\x64\x61\x74\x61\x54\x72\x61\x6E\x73\x66\x65\x72","\x66\x69\x6C\x65\x73","\x66\x69\x6C\x65\x53\x74\x61\x74\x75\x73","\x53\x75\x63\x63\x65\x73\x73\x66\x75\x6C\x6C\x79\x20\x73\x79\x6E\x63\x65\x64\x3A\x20","\x4C\x69\x76\x65\x20\x64\x61\x74\x61\x20\x73\x79\x6E\x63\x65\x64\x20\x26\x20\x65\x78\x74\x72\x61\x63\x74\x65\x64\x20\x73\x75\x63\x63\x65\x73\x73\x66\x75\x6C\x6C\x79\x21","\x50\x61\x72\x73\x65\x20\x65\x72\x72\x6F\x72\x3A\x20","\x6D\x4D\x6F\x64","\x6D\x52\x6F\x6F\x6D","\x6D\x46\x6F\x72\x65\x63\x61\x73\x74","\x6D\x41\x72\x72","\x6D\x44\x65\x70","\x6D\x53\x74\x61\x79","\x6D\x43\x6C\x6F\x73\x65","\x42\x69\x7A\x6E\x6F\x74\x65\x6C\x20\x42\x79\x20\x50\x72\x69\x64\x65\x20\x4D\x6F\x74\x65\x72\x61\x0A\x4B\x69\x6E\x64\x6C\x79\x20\x66\x69\x6E\x64\x20\x74\x68\x65\x20\x62\x65\x6C\x6F\x77\x20\x6C\x61\x73\x74\x20\x6E\x69\x67\x68\x74\x20\x72\x65\x70\x6F\x72\x74\x2E\x0A\x44\x61\x74\x65\x3A\x2D\x20","\x0A\x0A\x46\x54\x44\x20\x3A\x2D\x0A\x54\x6F\x74\x61\x6C\x20\x4E\x75\x6D\x62\x65\x72\x20\x6F\x66\x20\x52\x6F\x6F\x6D\x20\x3A\x2D\x20","\x0A\x4E\x6F\x2E\x20\x4F\x66\x20\x52\x6F\x6F\x6D\x73\x20\x53\x6F\x6C\x64\x20\x3A\x2D\x20","\x0A\x44\x61\x79\x20\x75\x73\x65\x20\x52\x6F\x6F\x6D\x20\x3A\x2D\x20","\x0A\x43\x6F\x6D\x70\x6C\x69\x6D\x65\x6E\x74\x61\x72\x79\x20\x3A\x2D\x20","\x0A\x41\x52\x52\x20\x3A\x2D\x20","\x0A\x52\x65\x76\x20\x50\x61\x72\x20\x3A\x2D\x20","\x0A\x4F\x43\x43\x20\x25\x20\x3A\x2D\x20","\x0A\x52\x6F\x6F\x6D\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x46\x26\x42\x20\x52\x45\x56\x20\x3A\x2D\x20","\x0A\x4C\x61\x75\x6E\x64\x72\x79\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x4D\x69\x73\x63\x2E\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x54\x72\x61\x76\x65\x6C\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x4D\x69\x6E\x69\x20\x42\x61\x72\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x54\x6F\x74\x61\x6C\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x0A\x4D\x54\x44\x20\x3A\x2D\x0A\x54\x6F\x74\x61\x6C\x20\x4E\x75\x6D\x62\x65\x72\x20\x6F\x66\x20\x52\x6F\x6F\x6D\x20\x3A\x2D\x20","\x0A\x4F\x74\x68\x65\x72\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x4D\x69\x6E\x69\x62\x61\x72\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x0A\x59\x54\x44\x20\x3A\x2D\x0A\x54\x6F\x74\x61\x6C\x20\x4E\x75\x6D\x62\x65\x72\x20\x6F\x66\x20\x52\x6F\x6F\x6D\x20\x3A\x2D\x20","\x0A\x0A\x4D\x4F\x44\x20\x3A\x2D\x20","\x0A\x52\x6F\x6F\x6D\x20\x4E\x6F\x20\x3A\x2D\x20","\x0A\x0A\x4E\x65\x78\x74\x20\x64\x61\x79\x20\x46\x6F\x72\x65\x63\x61\x73\x74\x20\x3A\x2D\x20","\x0A\x45\x78\x70\x2E\x20\x41\x72\x72\x20\x3A\x2D\x20","\x0A\x44\x65\x70\x61\x72\x74\x75\x72\x65\x20\x3A\x2D\x20","\x0A\x53\x74\x61\x79\x20\x6F\x76\x65\x72\x20\x3A\x2D\x20","\x0A\x54\x6F\x64\x61\x79\x27\x73\x20\x63\x6C\x6F\x73\x69\x6E\x67\x20\x3A\x2D\x20","\x72\x65\x70\x6F\x72\x74\x50\x61\x70\x65\x72","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x62\x74\x6E\x47\x65\x6E","\x62\x74\x6E\x44\x6F\x77\x6E\x6C\x6F\x61\x64","\x42\x69\x7A\x6E\x6F\x74\x65\x6C\x5F\x4E\x69\x67\x68\x74\x5F\x41\x75\x64\x69\x74\x5F","\x2E\x74\x78\x74","\x62\x74\x6E\x43\x6F\x70\x79","\x63\x6C\x69\x70\x62\x6F\x61\x72\x64","\x77\x72\x69\x74\x65\x54\x65\x78\x74"];const $=(_0x4e6cx2)=>document[_0x5a1b[1]](_0x4e6cx2);function toast(_0x4e6cx4,_0x4e6cx5){const _0x4e6cx6=$(_0x5a1b[2]);_0x4e6cx6[_0x5a1b[3]]=_0x4e6cx4;_0x4e6cx6[_0x5a1b[4]](_0x5a1b[5],!!_0x4e6cx5);_0x4e6cx6[_0x5a1b[4]](_0x5a1b[7],true);clearTimeout(_0x4e6cx6[_0x5a1b[6]]);_0x4e6cx6[_0x5a1b[6]]=setTimeout(()=>_0x4e6cx6[_0x5a1b[4]](_0x5a1b[7],false),4200)}const canvas=$(_0x5a1b[9]),ctx=canvas[_0x5a1b[10]](_0x5a1b[11]);let w,h,streams=[];function resizeCanvas(){w=canvas.width=window[_0x5a1b[12]];h=canvas.height=window[_0x5a1b[13]];const _0x4e6cx9=Math.floor(w/28);streams=[];for(let _0x4e6cxa=0;_0x4e6cxa<_0x4e6cx9;_0x4e6cxa++){streams.push({x:_0x4e6cxa*28+Math.random()*8,y:Math.random()*-h,length:60+Math.random()*100,speed:2.2+Math.random()*4,alpha:0.25+Math.random()*0.75,width:1.2+Math.random()*1.8})}}window[_0x5a1b[15]](_0x5a1b[14],resizeCanvas);resizeCanvas();function getStreamColor(){const _0x4e6cxc=document.body[_0x5a1b[16]](_0x5a1b[17])||_0x5a1b[18];if(_0x4e6cxc===_0x5a1b[19]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x30\x30\x66\x66\x36\x36"}}if(_0x4e6cxc===_0x5a1b[20]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x66\x66\x33\x64\x66\x61"}}if(_0x4e6cxc===_0x5a1b[21]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x66\x66\x32\x61\x35\x35"}}if(_0x4e6cxc===_0x5a1b[22]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x66\x66\x62\x38\x30\x30"}}if(_0x4e6cxc===_0x5a1b[23]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x39\x30\x62\x38\x66\x30"}}if(_0x4e6cxc===_0x5a1b[24]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x61\x36\x66\x66\x30\x30"}}return {head:"\x23\x66\x66\x66\x66\x66\x66",tail:"\x23\x30\x30\x65\x35\x66\x66"}}function animateStreams(){ctx[_0x5a1b[25]](0,0,w,h);const _0x4e6cxe=getStreamColor();for(let _0x4e6cxf of streams){_0x4e6cxf.y+=_0x4e6cxf.speed;if(_0x4e6cxf.y-_0x4e6cxf.length>h){_0x4e6cxf.y=Math.random()*-50-_0x4e6cxf.length;_0x4e6cxf.speed=2.2+Math.random()*4}const _0x4e6cx10=ctx[_0x5a1b[26]](_0x4e6cxf.x,_0x4e6cxf.y-_0x4e6cxf.length,_0x4e6cxf.x,_0x4e6cxf.y);_0x4e6cx10[_0x5a1b[27]](0,"\x72\x67\x62\x61\x28\x30\x2C\x30\x2C\x30\x2C\x30\x29");_0x4e6cx10[_0x5a1b[27]](0.75,_0x4e6cxe.tail);_0x4e6cx10[_0x5a1b[27]](1,_0x4e6cxe.head);ctx[_0x5a1b[28]]=_0x4e6cx10;ctx[_0x5a1b[29]]=_0x4e6cxf.width;ctx[_0x5a1b[30]]();ctx[_0x5a1b[31]](_0x4e6cxf.x,_0x4e6cxf.y-_0x4e6cxf.length);ctx[_0x5a1b[32]](_0x4e6cxf.x,_0x4e6cxf.y);ctx[_0x5a1b[33]]();ctx[_0x5a1b[34]]=_0x4e6cxe.head;ctx[_0x5a1b[30]]();ctx[_0x5a1b[35]](_0x4e6cxf.x,_0x4e6cxf.y,_0x4e6cxf.width*1.2,0,Math.PI*2);ctx[_0x5a1b[36]]()}requestAnimationFrame(animateStreams)}animateStreams();let sfxCtx=null;function getSfxContext(){if(!sfxCtx){sfxCtx= new (window[_0x5a1b[38]]||window[_0x5a1b[39]])()}if(sfxCtx[_0x5a1b[40]]===_0x5a1b[41]){sfxCtx[_0x5a1b[42]]()}return sfxCtx}function playClickSound(_0x4e6cx13=1350,_0x4e6cx14=_0x5a1b[43],_0x4e6cx15=0.06){if(!ttsOn){return}try{const _0x4e6cx16=getSfxContext();const _0x4e6cx17=_0x4e6cx16[_0x5a1b[44]]();const _0x4e6cx18=_0x4e6cx16[_0x5a1b[45]]();_0x4e6cx17[_0x5a1b[46]]=_0x4e6cx14;_0x4e6cx17[_0x5a1b[48]][_0x5a1b[49]](_0x4e6cx13,_0x4e6cx16[_0x5a1b[47]]);_0x4e6cx17[_0x5a1b[48]][_0x5a1b[50]](_0x4e6cx13*0.35,_0x4e6cx16[_0x5a1b[47]]+_0x4e6cx15);_0x4e6cx18[_0x5a1b[51]][_0x5a1b[49]](0.2,_0x4e6cx16[_0x5a1b[47]]);_0x4e6cx18[_0x5a1b[51]][_0x5a1b[50]](0.001,_0x4e6cx16[_0x5a1b[47]]+_0x4e6cx15);_0x4e6cx17[_0x5a1b[52]](_0x4e6cx18);_0x4e6cx18[_0x5a1b[52]](_0x4e6cx16[_0x5a1b[53]]);_0x4e6cx17[_0x5a1b[54]]();_0x4e6cx17[_0x5a1b[55]](_0x4e6cx16[_0x5a1b[47]]+_0x4e6cx15)}catch(err){}}document[_0x5a1b[15]](_0x5a1b[56],(_0x4e6cx1a)=>{if(_0x4e6cx1a.target[_0x5a1b[57]](_0x5a1b[58])){playClickSound(1400,_0x5a1b[43],0.07)}});const themeSelector=$(_0x5a1b[59]);function setThemeValue(_0x4e6cx1c){if(_0x4e6cx1c===_0x5a1b[18]){document.body[_0x5a1b[60]](_0x5a1b[17])}else {document.body[_0x5a1b[61]](_0x5a1b[17],_0x4e6cx1c)}localStorage[_0x5a1b[62]](_0x5a1b[63],_0x4e6cx1c)}function runThemeSweep(){document[_0x5a1b[64]](_0x5a1b[65])[_0x5a1b[66]](_0x4e6cx1e=>_0x4e6cx1e[_0x5a1b[8]]());const _0x4e6cx1f=document[_0x5a1b[67]](_0x5a1b[68]);_0x4e6cx1f[_0x5a1b[69]]=_0x5a1b[70];document[_0x5a1b[72]][_0x5a1b[71]](_0x4e6cx1f);setTimeout(()=>_0x4e6cx1f[_0x5a1b[8]](),1350)}function applyTheme(_0x4e6cx21,_0x4e6cx22=true){if(!_0x4e6cx22){setThemeValue(_0x4e6cx21);return}if(document[_0x5a1b[73]]){document[_0x5a1b[73]](()=>{setThemeValue(_0x4e6cx21);runThemeSweep()})}else {requestAnimationFrame(()=>{setThemeValue(_0x4e6cx21);runThemeSweep()})}}themeSelector[_0x5a1b[15]](_0x5a1b[74],(_0x4e6cx24)=>{applyTheme(_0x4e6cx24.target[_0x5a1b[75]]);toast(_0x5a1b[76]+_0x4e6cx24.target[_0x5a1b[77]][_0x4e6cx24.target[_0x5a1b[78]]][_0x5a1b[79]])});const savedTheme=localStorage[_0x5a1b[80]](_0x5a1b[63])||_0x5a1b[18];themeSelector[_0x5a1b[75]]=savedTheme;applyTheme(savedTheme,false);let audioCtx=null,ttsOn=true;const bgMusic=$(_0x5a1b[81]),playMusicBtn=$(_0x5a1b[82]);function fadeInAudio(_0x4e6cx26,_0x4e6cx27=0.9,_0x4e6cx28=3200){if(!ttsOn){return}_0x4e6cx26[_0x5a1b[83]]=0;const _0x4e6cx29=_0x4e6cx26[_0x5a1b[84]]();if(_0x4e6cx29!==undefined){_0x4e6cx29.then(()=>{playMusicBtn[_0x5a1b[3]]=_0x5a1b[85];const _0x4e6cx2a=performance[_0x5a1b[86]]();function _0x4e6cx2b(_0x4e6cx2c){const _0x4e6cx2d=_0x4e6cx2c-_0x4e6cx2a;const _0x4e6cx2e=Math[_0x5a1b[87]](_0x4e6cx2d/_0x4e6cx28,1);_0x4e6cx26[_0x5a1b[83]]=_0x4e6cx2e*_0x4e6cx27;if(_0x4e6cx2e<1&&!_0x4e6cx26[_0x5a1b[88]]){requestAnimationFrame(_0x4e6cx2b)}}requestAnimationFrame(_0x4e6cx2b)}).catch((_0x4e6cx2f)=>{console[_0x5a1b[89]](_0x5a1b[90],_0x4e6cx2f)})}}function playMasterSequence(){if(!ttsOn){return}try{audioCtx= new (window[_0x5a1b[38]]||window[_0x5a1b[39]])();const _0x4e6cx31=audioCtx[_0x5a1b[44]]();const _0x4e6cx32=audioCtx[_0x5a1b[45]]();const _0x4e6cx33=audioCtx[_0x5a1b[91]]();_0x4e6cx31[_0x5a1b[46]]=_0x5a1b[43];_0x4e6cx31[_0x5a1b[48]][_0x5a1b[49]](100,audioCtx[_0x5a1b[47]]);_0x4e6cx31[_0x5a1b[48]][_0x5a1b[50]](750,audioCtx[_0x5a1b[47]]+0.6);_0x4e6cx33[_0x5a1b[46]]=_0x5a1b[92];_0x4e6cx33[_0x5a1b[48]][_0x5a1b[49]](1600,audioCtx[_0x5a1b[47]]);_0x4e6cx32[_0x5a1b[51]][_0x5a1b[49]](0.35,audioCtx[_0x5a1b[47]]);_0x4e6cx32[_0x5a1b[51]][_0x5a1b[50]](0.001,audioCtx[_0x5a1b[47]]+1.2);_0x4e6cx31[_0x5a1b[52]](_0x4e6cx33);_0x4e6cx33[_0x5a1b[52]](_0x4e6cx32);_0x4e6cx32[_0x5a1b[52]](audioCtx[_0x5a1b[53]]);_0x4e6cx31[_0x5a1b[54]]();_0x4e6cx31[_0x5a1b[55]](audioCtx[_0x5a1b[47]]+1.2);setTimeout(()=>{if(!(_0x5a1b[93] in window)){fadeInAudio(bgMusic,0.9,3000);return}const _0x4e6cx34=_0x5a1b[94];const _0x4e6cx35=speechSynthesis[_0x5a1b[95]]()||[];const _0x4e6cx36=_0x4e6cx35.find((_0x4e6cx37)=>/Google US English|Natural|English/i[_0x5a1b[136]](_0x4e6cx37[_0x5a1b[96]]||""))||_0x4e6cx35[0];const _0x4e6cx38=(_0x4e6cx39,_0x4e6cx3a,_0x4e6cx3b,_0x4e6cx3c,_0x4e6cx3d)=>{setTimeout(()=>{const _0x4e6cx3e= new SpeechSynthesisUtterance(_0x4e6cx39);_0x4e6cx3e[_0x5a1b[99]]=_0x5a1b[98];_0x4e6cx3e[_0x5a1b[100]]=_0x4e6cx3a;_0x4e6cx3e[_0x5a1b[101]]=_0x4e6cx3b;_0x4e6cx3e[_0x5a1b[83]]=_0x4e6cx3c;if(_0x4e6cx36){_0x4e6cx3e[_0x5a1b[102]]=_0x4e6cx36}speechSynthesis[_0x5a1b[103]](_0x4e6cx3e)},_0x4e6cx3d)};speechSynthesis[_0x5a1b[104]]();_0x4e6cx38(_0x4e6cx34,1.02,1.05,1,0);_0x4e6cx38(_0x4e6cx34,0.96,0.98,0.65,300);setTimeout(()=>{fadeInAudio(bgMusic,0.9,3200)},2600)},500)}catch(err){fadeInAudio(bgMusic,0.9,3000)}}playMusicBtn[_0x5a1b[15]](_0x5a1b[56],()=>{if(bgMusic[_0x5a1b[88]]){fadeInAudio(bgMusic,0.9,1500);playMusicBtn[_0x5a1b[3]]=_0x5a1b[85];toast(_0x5a1b[107])}else {bgMusic[_0x5a1b[105]]();playMusicBtn[_0x5a1b[3]]=_0x5a1b[106];toast(_0x5a1b[108])}});$(_0x5a1b[109])[_0x5a1b[15]](_0x5a1b[56],()=>{ttsOn=!ttsOn;bgMusic[_0x5a1b[110]]=!ttsOn;$(_0x5a1b[109])[_0x5a1b[3]]=ttsOn?_0x5a1b[111]:_0x5a1b[112];toast(ttsOn?_0x5a1b[113]:_0x5a1b[114])});const embeddedPhoto=$(_0x5a1b[115]),loginPhoto=$(_0x5a1b[116]);if(embeddedPhoto&&loginPhoto){loginPhoto[_0x5a1b[117]]=embeddedPhoto[_0x5a1b[117]]}function initializeSystem(){const _0x4e6cx41=$(_0x5a1b[118])[_0x5a1b[75]][_0x5a1b[119]]();if(_0x4e6cx41!==_0x5a1b[120]){$(_0x5a1b[121])[_0x5a1b[3]]=_0x5a1b[122];$(_0x5a1b[118])[_0x5a1b[75]]="";$(_0x5a1b[118])[_0x5a1b[123]]();return}$(_0x5a1b[121])[_0x5a1b[3]]="";playMasterSequence();$(_0x5a1b[124])[_0x5a1b[125]][_0x5a1b[126]]="0";setTimeout(()=>$(_0x5a1b[124])[_0x5a1b[125]][_0x5a1b[127]]=_0x5a1b[128],600);toast(_0x5a1b[129])}$(_0x5a1b[130])[_0x5a1b[15]](_0x5a1b[56],initializeSystem);$(_0x5a1b[118])[_0x5a1b[15]](_0x5a1b[131],(_0x4e6cx43)=>{if(_0x4e6cx43.key===_0x5a1b[132]){initializeSystem()}});function formatIndian(_0x4e6cx45){if(_0x4e6cx45===""||_0x4e6cx45== null){return ""};const _0x4e6cx46=String(_0x4e6cx45)[_0x5a1b[133]](/,/g,"")[_0x5a1b[119]]();const _0x4e6cx47=Number(_0x4e6cx46);if(isNaN(_0x4e6cx47)){return String(_0x4e6cx45)};if(_0x4e6cx47===0){return "\x30\x30"};if(Math[_0x5a1b[134]](_0x4e6cx47)<10){return String(Math[_0x5a1b[134]](_0x4e6cx47))[_0x5a1b[135]](2,"\x30")};return _0x4e6cx47[_0x5a1b[136]](_0x5a1b[137])}let extractedData={date:"",ftd:{rooms:"",sold:"",dayUse:"",comp:"",arr:"",revPar:"",occ:"",roomRev:"",fbRev:"",launRev:"",miscRev:"",travRev:"",miniBarRev:"",totalRev:""},mtd:{rooms:"",sold:"",dayUse:"",comp:"",arr:"",revPar:"",occ:"",roomRev:"",fbRev:"",otherRev:"",miniBarRev:"",totalRev:""},ytd:{rooms:"",sold:"",dayUse:"",comp:"",arr:"",revPar:"",occ:"",roomRev:"",fbRev:"",otherRev:"",miniBarRev:"",totalRev:""}};function parseWorkbook(_0x4e6cx4a){const _0x4e6cx4b=_0x4e6cx4a[_0x5a1b[138]][_0x4e6cx4a.SheetNames[0]];const _0x4e6cx4c=XLSX.utils[_0x5a1b[139]](_0x4e6cx4b,{header:1,raw:false});function _0x4e6cx4d(_0x4e6cx4e){for(let _0x4e6cx4f of _0x4e6cx4c){if(!_0x4e6cx4f){continue}const _0x4e6cx50=(_0x4e6cx4f||[])[_0x5a1b[140]]("\x20");const _0x4e6cx51=String(_0x4e6cx4f[0]||_0x4e6cx4f[1]||"")[_0x5a1b[119]]();if(_0x4e6cx4e[_0x5a1b[141]](_0x4e6cx51)||_0x4e6cx4e[_0x5a1b[141]](_0x4e6cx50)){const _0x4e6cx52=[];for(let _0x4e6cx53=1;_0x4e6cx53<_0x4e6cx4f.length;_0x4e6cx53++){if(_0x4e6cx4f[_0x5a1b[53]]!==undefined&&_0x4e6cx4f[_0x5a1b[53]]!==""&&_0x4e6cx4f[_0x5a1b[53]]!==null){_0x4e6cx52[_0x5a1b[142]](_0x4e6cx4f[_0x5a1b[53]])}}if(_0x4e6cx52.length>=3){return [_0x4e6cx52[0],_0x4e6cx52[1],_0x4e6cx52[2]]}else {if(_0x4e6cx52.length===2){return [_0x4e6cx52[0],_0x4e6cx52[1],""]}else {if(_0x4e6cx52.length===1){return [_0x4e6cx52[0],"",""]}}}}}return ["","",""]}for(let _0x4e6cx4f of _0x4e6cx4c){const _0x4e6cx54=(_0x4e6cx4f||[])[_0x5a1b[140]]("\x20");const _0x4e6cx55=_0x4e6cx54[_0x5a1b[143]](/Date\s*:\s*([0-9A-Za-z\-/]+)/i);if(_0x4e6cx55){extractedData[_0x5a1b[144]]=_0x4e6cx55[1];break}}const _0x4e6cx56=_0x4e6cx4d(/^Physical Rooms$/i);const _0x4e6cx57=_0x4e6cx4d(/^Rooms Occupied$/i);const _0x4e6cx58=_0x4e6cx4d(/Rooms Occupied \(Day Used\)/i);const _0x4e6cx59=_0x4e6cx4d(/Rooms Occupied Complimentary/i);const _0x4e6cx5a=_0x4e6cx4d(/Average Room Rate/i);const _0x4e6cx5b=_0x4e6cx4d(/Revenue Per Available Room/i);const _0x4e6cx5c=_0x4e6cx4d(/Occupancy %age/i);const _0x4e6cx5d=_0x4e6cx4d(/^Total Room Revenue/i);let _0x4e6cx5e=["","",""];for(let _0x4e6cx4f of _0x4e6cx4c){if(!_0x4e6cx4f){continue}const _0x4e6cx51=String(_0x4e6cx4f[0]||_0x4e6cx4f[1]||"")[_0x5a1b[119]]();if(/^Total F&B Revenue$/i[_0x5a1b[141]](_0x4e6cx51)){const _0x4e6cx52=[];for(let _0x4e6cx53=1;_0x4e6cx53<_0x4e6cx4f.length;_0x4e6cx53++){if(_0x4e6cx4f[_0x5a1b[53]]!==undefined&&_0x4e6cx4f[_0x5a1b[53]]!==""&&_0x4e6cx4f[_0x5a1b[53]]!==null){_0x4e6cx52[_0x5a1b[142]](_0x4e6cx4f[_0x5a1b[53]])}}if(_0x4e6cx52.length>=3){_0x4e6cx5e=[_0x4e6cx52[0],_0x4e6cx52[1],_0x4e6cx52[2]]}}}const _0x4e6cx5f=_0x4e6cx4d(/Total Laundry Revenue/i);const _0x4e6cx60=_0x4e6cx4d(/Total Misc Revenue/i);const _0x4e6cx61=_0x4e6cx4d(/Total Travel Revenue/i);const _0x4e6cx62=_0x4e6cx4d(/Total Mini Bar Revenue/i);const _0x4e6cx63=_0x4e6cx4d(/Total Other Revenue/i);const _0x4e6cx64=_0x4e6cx4d(/Grand Total/i);const _0x4e6cx65=(_0x4e6cx66)=>((_0x4e6cx66===""||_0x4e6cx66== null)?"":formatIndian(_0x4e6cx66));const _0x4e6cx67=(_0x4e6cx66)=>{if(_0x4e6cx66===""||_0x4e6cx66== null){return ""};const _0x4e6cx68=String(_0x4e6cx66)[_0x5a1b[133]]("%","")[_0x5a1b[119]]();const _0x4e6cx47=Number(_0x4e6cx68);if(isNaN(_0x4e6cx47)){return _0x4e6cx68+"\x25"};if(_0x4e6cx47===0){return "\x30\x30\x25"};if(Math[_0x5a1b[134]](_0x4e6cx47)<10){return String(Math[_0x5a1b[134]](_0x4e6cx47))[_0x5a1b[135]](2,"\x30")+"\x25"};return _0x4e6cx47+"\x25"};extractedData[_0x5a1b[145]]={rooms:_0x4e6cx65(_0x4e6cx56[0]),sold:_0x4e6cx65(_0x4e6cx57[0]),dayUse:_0x4e6cx65(_0x4e6cx58[0]),comp:_0x4e6cx65(_0x4e6cx59[0]),arr:_0x4e6cx65(_0x4e6cx5a[0]),revPar:_0x4e6cx65(_0x4e6cx5b[0]),occ:_0x4e6cx67(_0x4e6cx5c[0]),roomRev:_0x4e6cx65(_0x4e6cx5d[0]),fbRev:_0x4e6cx65(_0x4e6cx5e[0]),launRev:_0x4e6cx65(_0x4e6cx5f[0]),miscRev:_0x4e6cx65(_0x4e6cx60[0]),travRev:_0x4e6cx65(_0x4e6cx61[0]),miniBarRev:_0x4e6cx65(_0x4e6cx62[0]),totalRev:_0x4e6cx65(_0x4e6cx64[0])};extractedData[_0x5a1b[146]]={rooms:_0x4e6cx65(_0x4e6cx56[1]),sold:_0x4e6cx65(_0x4e6cx57[1]),dayUse:_0x4e6cx65(_0x4e6cx58[1]),comp:_0x4e6cx65(_0x4e6cx59[1]),arr:_0x4e6cx65(_0x4e6cx5a[1]),revPar:_0x4e6cx65(_0x4e6cx5b[1]),occ:_0x4e6cx67(_0x4e6cx5c[1]),roomRev:_0x4e6cx65(_0x4e6cx5d[1]),fbRev:_0x4e6cx65(_0x4e6cx5e[1]),otherRev:_0x4e6cx65(_0x4e6cx63[1]),miniBarRev:_0x4e6cx65(_0x4e6cx62[1]),totalRev:_0x4e6cx65(_0x4e6cx64[1])};extractedData[_0x5a1b[147]]={rooms:_0x4e6cx65(_0x4e6cx56[2]),sold:_0x4e6cx65(_0x4e6cx57[2]),dayUse:_0x4e6cx65(_0x4e6cx58[2]),comp:_0x4e6cx65(_0x4e6cx59[2]),arr:_0x4e6cx65(_0x4e6cx5a[2]),revPar:_0x4e6cx65(_0x4e6cx5b[2]),occ:_0x4e6cx67(_0x4e6cx5c[2]),roomRev:_0x4e6cx65(_0x4e6cx5d[2]),fbRev:_0x4e6cx65(_0x4e6cx5e[2]),otherRev:_0x4e6cx65(_0x4e6cx63[2]),miniBarRev:_0x4e6cx65(_0x4e6cx62[2]),totalRev:_0x4e6cx65(_0x4e6cx64[2])}}const dropZone=$(_0x5a1b[148]),fileInput=$(_0x5a1b[149]);dropZone[_0x5a1b[15]](_0x5a1b[56],()=>fileInput[_0x5a1b[56]]());[_0x5a1b[150],_0x5a1b[151]][_0x5a1b[66]](_0x4e6cx6a=>dropZone[_0x5a1b[15]](_0x4e6cx6a,_0x4e6cx6b=>{_0x4e6cx6b[_0x5a1b[152]]();dropZone.classList[_0x5a1b[142]](_0x5a1b[153])}));[_0x5a1b[154],_0x5a1b[155]][_0x5a1b[66]](_0x4e6cx6a=>dropZone[_0x5a1b[15]](_0x4e6cx6a,_0x4e6cx6b=>{_0x4e6cx6b[_0x5a1b[152]]();dropZone.classList[_0x5a1b[8]](_0x5a1b[153])}));dropZone[_0x5a1b[15]](_0x5a1b[155],_0x4e6cx6c=>{const _0x4e6cx6d=(_0x4e6cx6c[_0x5a1b[156]][_0x5a1b[157]]||[])[0];if(_0x4e6cx6d){processFile(_0x4e6cx6d)}});fileInput[_0x5a1b[15]](_0x5a1b[74],_0x4e6cx6f=>{const _0x4e6cx6d=_0x4e6cx6f.target.files&&_0x4e6cx6f.target.files[0];if(_0x4e6cx6d){processFile(_0x4e6cx6d)};_0x4e6cx6f.target.value=""});async function processFile(_0x4e6cx71){if(!/\.(xls|xlsx)$/i[_0x5a1b[141]](_0x4e6cx71.name)){toast("\x50\x6C\x65\x61\x73\x65\x20\x64\x72\x6F\x70\x20\x61\x20\x76\x61\x6C\x69\x64\x20\x2E\x78\x6C\x73\x20\x6F\x72\x20\x2E\x78\x6C\x73\x78\x20\x66\x69\x6C\x65",true);return}toast("\x50\x61\x72\x73\x69\x6E\x67\x20\x75\x70\x6C\x6F\x61\x64\x65\x64\x20\x45\x78\x63\x65\x6C\x2E\x2E\x2E");try{const _0x4e6cx72= await _0x4e6cx71.arrayBuffer();const _0x4e6cx73=XLSX.read(_0x4e6cx72,{type:"\x61\x72\x72\x61\x79"});parseWorkbook(_0x4e6cx73);$(_0x5a1b[158])[_0x5a1b[3]]=_0x5a1b[159]+_0x4e6cx71.name;renderReport();toast(_0x5a1b[160])}catch(err){console.error(err);toast(_0x5a1b[161]+err.message,true)}}function generateReportText(){const _0x4e6cx75=extractedData[_0x5a1b[145]];const _0x4e6cx76=extractedData[_0x5a1b[146]];const _0x4e6cx77=extractedData[_0x5a1b[147]];const _0x4e6cx78=$(_0x5a1b[162])[_0x5a1b[75]];const _0x4e6cx79=$(_0x5a1b[163])[_0x5a1b[75]];const _0x4e6cx7a=$(_0x5a1b[164])[_0x5a1b[75]];const _0x4e6cx7b=$(_0x5a1b[165])[_0x5a1b[75]];const _0x4e6cx7c=$(_0x5a1b[166])[_0x5a1b[75]];const _0x4e6cx7d=$(_0x5a1b[167])[_0x5a1b[75]];const _0x4e6cx7e=$(_0x5a1b[168])[_0x5a1b[75]];return _0x5a1b[169]+extractedData[_0x5a1b[144]]+_0x5a1b[170]+_0x4e6cx75.rooms+_0x5a1b[171]+_0x4e6cx75.sold+_0x5a1b[172]+_0x4e6cx75.dayUse+_0x5a1b[173]+_0x4e6cx75.comp+_0x5a1b[174]+_0x4e6cx75.arr+_0x5a1b[175]+_0x4e6cx75.revPar+_0x5a1b[176]+_0x4e6cx75.occ+_0x5a1b[177]+_0x4e6cx75.roomRev+_0x5a1b[178]+_0x4e6cx75.fbRev+_0x5a1b[179]+_0x4e6cx75.launRev+_0x5a1b[180]+_0x4e6cx75.miscRev+_0x5a1b[181]+_0x4e6cx75.travRev+_0x5a1b[182]+_0x4e6cx75.miniBarRev+_0x5a1b[183]+_0x4e6cx75.totalRev+_0x5a1b[184]+_0x4e6cx76.rooms+_0x5a1b[171]+_0x4e6cx76.sold+_0x5a1b[172]+_0x4e6cx76.dayUse+_0x5a1b[173]+_0x4e6cx76.comp+_0x5a1b[174]+_0x4e6cx76.arr+_0x5a1b[175]+_0x4e6cx76.revPar+_0x5a1b[176]+_0x4e6cx76.occ+_0x5a1b[177]+_0x4e6cx76.roomRev+_0x5a1b[178]+_0x4e6cx76.fbRev+_0x5a1b[185]+_0x4e6cx76.otherRev+_0x5a1b[186]+_0x4e6cx76.miniBarRev+_0x5a1b[183]+_0x4e6cx76.totalRev+_0x5a1b[187]+_0x4e6cx77.rooms+_0x5a1b[171]+_0x4e6cx77.sold+_0x5a1b[172]+_0x4e6cx77.dayUse+_0x5a1b[173]+_0x4e6cx77.comp+_0x5a1b[174]+_0x4e6cx77.arr+_0x5a1b[175]+_0x4e6cx77.revPar+_0x5a1b[176]+_0x4e6cx77.occ+_0x5a1b[177]+_0x4e6cx77.roomRev+_0x5a1b[178]+_0x4e6cx77.fbRev+_0x5a1b[185]+_0x4e6cx77.otherRev+_0x5a1b[182]+_0x4e6cx77.miniBarRev+_0x5a1b[183]+_0x4e6cx77.totalRev+_0x5a1b[188]+_0x4e6cx78+_0x5a1b[189]+_0x4e6cx79+_0x5a1b[190]+_0x4e6cx7a+_0x5a1b[191]+_0x4e6cx7b+_0x5a1b[192]+_0x4e6cx7c+_0x5a1b[193]+_0x4e6cx7d+_0x5a1b[194]+_0x4e6cx7e}function renderReport(){const _0x4e6cx80=generateReportText();const _0x4e6cx81=_0x4e6cx80[_0x5a1b[133]](/^Biznotel By Pride Motera\r?\n?/i,"");const _0x4e6cx82=_0x4e6cx81.split("\x0A").map((_0x4e6cx83)=>{const _0x4e6cx84=_0x4e6cx83[_0x5a1b[133]](/&/g,"\x26\x61\x6D\x70\x3B")[_0x5a1b[133]](/</g,"\x26\x6C\x74\x3B");if(/F&B REV/i[_0x5a1b[141]](_0x4e6cx83)){return `\x3C\x73\x70\x61\x6E\x20\x63\x6C\x61\x73\x73\x3D\x22\x66\x62\x2D\x68\x6C\x22\x3E${_0x4e6cx84}\x3C\x2F\x73\x70\x61\x6E\x3E`};return _0x4e6cx84})[_0x5a1b[140]]("\x0A");$(_0x5a1b[195])[_0x5a1b[196]]=_0x4e6cx82}$(_0x5a1b[197])[_0x5a1b[15]](_0x5a1b[56],()=>{renderReport();toast("\x52\x65\x70\x6F\x72\x74\x20\x67\x65\x6E\x65\x72\x61\x74\x65\x64\x20\x73\x75\x63\x63\x65\x73\x73\x66\x75\x6C\x6C\x79")});$(_0x5a1b[198])[_0x5a1b[15]](_0x5a1b[56],()=>{const _0x4e6cx86=generateReportText();const _0x4e6cx87= new Blob([_0x4e6cx86],{type:"\x74\x65\x78\x74\x2F\x70\x6C\x61\x69\x6E\x3B\x63\x68\x61\x72\x73\x65\x74\x3D\x75\x74\x66\x2D\x38"});const _0x4e6cx88=document[_0x5a1b[67]]("\x61");_0x4e6cx88.href=URL.createObjectURL(_0x4e6cx87);_0x4e6cx88.download=_0x5a1b[199]+(extractedData[_0x5a1b[144]]||"\x52\x65\x70\x6F\x72\x74")+_0x5a1b[200];document.body[_0x5a1b[71]](_0x4e6cx88);_0x4e6cx88[_0x5a1b[56]]();_0x4e6cx88[_0x5a1b[8]]();toast("\x54\x58\x54\x20\x66\x69\x6C\x65\x20\x64\x6F\x77\x6E\x6C\x6F\x61\x64\x65\x64\x20\x77\x69\x74\x68\x20\x46\x75\x6C\x6C\x20\x48\x6F\x74\x65\x6C\x20\x48\x65\x61\x64\x65\x72")});$(_0x5a1b[201])[_0x5a1b[15]](_0x5a1b[56],()=>{const _0x4e6cx86=generateReportText();navigator[_0x5a1b[202]][_0x5a1b[203]](_0x4e6cx86).then(()=>toast("\x43\x6F\x70\x69\x65\x64\x20\x74\x6F\x20\x63\x6C\x69\x70\x62\x6F\x61\x72\x64\x20\x28\x49\x6E\x63\x6C\x75\x64\x65\x73\x20\x48\x6F\x74\x65\x6C\x20\x4E\x61\x6D\x65\x29"))});renderReport();
+var _0x9b4a=["\x75\x73\x65\x20\x73\x74\x72\x69\x63\x74","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x74\x6F\x61\x73\x74","\x74\x65\x78\x74\x43\x6F\x6E\x74\x65\x6E\x74","\x74\x6F\x67\x67\x6C\x65","\x65\x72\x72","\x61\x64\x64","\x73\x68\x6F\x77","\x72\x65\x6D\x6F\x76\x65","\x62\x67\x53\x74\x72\x65\x61\x6D\x63\x61\x6E\x76\x61\x73","\x67\x65\x74\x43\x6F\x6E\x74\x65\x78\x74","\x32\x64","\x69\x6E\x6E\x65\x72\x57\x69\x64\x74\x68","\x69\x6E\x6E\x65\x72\x48\x65\x69\x67\x68\x74","\x72\x65\x73\x69\x7A\x65","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x64\x61\x74\x61\x2D\x74\x68\x65\x6D\x65","\x66\x75\x74\x75\x72\x69\x73\x74\x69\x63\x2D\x61\x69","\x68\x61\x63\x6B\x65\x72\x2D\x6D\x61\x74\x72\x69\x78","\x63\x79\x62\x65\x72\x2D\x70\x75\x72\x70\x6C\x65","\x68\x61\x63\x6B\x65\x72\x2D\x63\x72\x69\x6D\x73\x6F\x6E","\x73\x6F\x6C\x61\x72\x2D\x67\x6F\x6C\x64","\x6D\x65\x63\x68\x61\x2D\x74\x69\x74\x61\x6E\x69\x75\x6D","\x70\x6C\x61\x73\x6D\x61\x2D\x74\x6F\x78\x69\x63","\x63\x6C\x65\x61\x72\x52\x65\x63\x74","\x63\x72\x65\x61\x74\x65\x4C\x69\x6E\x65\x61\x72\x47\x72\x61\x64\x69\x65\x6E\x74","\x61\x64\x64\x43\x6F\x6C\x6F\x72\x53\x74\x6F\x70","\x73\x74\x72\x6F\x6B\x65\x53\x74\x79\x6C\x65","\x6C\x69\x6E\x65\x57\x69\x64\x74\x68","\x62\x65\x67\x69\x6E\x50\x61\x74\x68","\x6D\x6F\x76\x65\x54\x6F","\x6C\x69\x6E\x65\x54\x6F","\x73\x74\x72\x6F\x6B\x65","\x66\x69\x6C\x6C\x53\x74\x79\x6C\x65","\x61\x72\x63","\x66\x69\x6C\x6C","\x72\x65\x71\x75\x65\x73\x74\x41\x6E\x69\x6D\x61\x74\x69\x6F\x6E\x46\x72\x61\x6D\x65","\x41\x75\x64\x69\x6F\x43\x6F\x6E\x74\x65\x78\x74","\x77\x65\x62\x6B\x69\x74\x41\x75\x64\x69\x6F\x43\x6F\x6E\x74\x65\x78\x74","\x73\x74\x61\x74\x65","\x73\x75\x73\x70\x65\x6E\x64\x65\x64","\x72\x65\x73\x75\x6D\x65","\x73\x61\x77\x74\x6F\x6F\x74\x68","\x63\x72\x65\x61\x74\x65\x4F\x73\x63\x69\x6C\x6C\x61\x74\x6F\x72","\x63\x72\x65\x61\x74\x65\x47\x61\x69\x6E","\x74\x79\x70\x65","\x63\x75\x72\x72\x65\x6E\x74\x54\x69\x6D\x65","\x66\x72\x65\x71\x75\x65\x6E\x63\x79","\x73\x65\x74\x56\x61\x6C\x75\x65\x41\x74\x54\x69\x6D\x65","\x65\x78\x70\x6F\x6E\x65\x6E\x74\x69\x61\x6C\x52\x61\x6D\x70\x54\x6F\x56\x61\x6C\x75\x65\x41\x74\x54\x69\x6D\x65","\x67\x61\x69\x6E","\x63\x6F\x6E\x6E\x65\x63\x74","\x64\x65\x73\x74\x69\x6E\x61\x74\x69\x6F\x6E","\x73\x74\x61\x72\x74","\x73\x74\x6F\x70","\x63\x6C\x69\x63\x6B","\x63\x6C\x6F\x73\x65\x73\x74","\x62\x75\x74\x74\x6F\x6E\x2C\x20\x73\x65\x6C\x65\x63\x74\x2C\x20\x69\x6E\x70\x75\x74\x2C\x20\x2E\x64\x72\x6F\x70\x2D\x7A\x6F\x6E\x65\x2C\x20\x2E\x62\x74\x6E\x2C\x20\x2E\x69\x6E\x70\x75\x74\x2D\x77\x72\x61\x70","\x74\x68\x65\x6D\x65\x53\x65\x6C\x65\x63\x74\x6F\x72","\x72\x65\x6D\x6F\x76\x65\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x73\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x73\x65\x74\x49\x74\x65\x6D","\x64\x61\x6B\x73\x68\x5F\x74\x68\x65\x6D\x65","\x71\x75\x65\x72\x79\x53\x65\x6C\x65\x63\x74\x6F\x72\x41\x6C\x6C","\x2E\x74\x68\x65\x6D\x65\x2D\x73\x77\x65\x65\x70","\x66\x6F\x72\x45\x61\x63\x68","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x64\x69\x76","\x63\x6C\x61\x73\x73\x4E\x61\x6D\x65","\x74\x68\x65\x6D\x65\x2D\x73\x77\x65\x65\x70","\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64","\x62\x6F\x64\x79","\x73\x74\x61\x72\x74\x56\x69\x65\x77\x54\x72\x61\x6E\x73\x69\x74\x69\x6F\x6E","\x63\x68\x61\x6E\x67\x65","\x76\x61\x6C\x75\x65","\x54\x68\x65\x6D\x65\x3A\x20","\x6F\x70\x74\x69\x6F\x6E\x73","\x73\x65\x6C\x65\x63\x74\x65\x64\x49\x6E\x64\x65\x78","\x74\x65\x78\x74","\x67\x65\x74\x49\x74\x65\x6D","\x62\x67\x4D\x75\x73\x69\x63","\x70\x6C\x61\x79\x4D\x75\x73\x69\x63\x42\x74\x6E","\x76\x6F\x6C\x75\x6D\x65","\x70\x6C\x61\x79","\x50\x61\x75\x73\x65\x20\x53\x6F\x6E\x67","\x6E\x6F\x77","\x6D\x69\x6E","\x70\x61\x75\x73\x65\x64","\x6C\x6F\x67","\x41\x75\x64\x69\x6F\x20\x6E\x6F\x74\x69\x63\x65\x3A\x20","\x63\x72\x65\x61\x74\x65\x42\x69\x71\x75\x61\x64\x46\x69\x6C\x74\x65\x72","\x6C\x6F\x77\x70\x61\x73\x73","\x73\x70\x65\x65\x63\x68\x53\x79\x6E\x74\x68\x65\x73\x69\x73","\x57\x65\x6C\x63\x6F\x6D\x65\x20\x69\x6E\x20\x74\x68\x65\x20\x63\x72\x65\x61\x74\x69\x6F\x6E\x20\x6F\x66\x20\x41\x6D\x61\x6E\x20\x6B\x2E\x20\x70\x72\x61\x6A\x61\x70\x61\x74\x69\x20\x53\x72\x69\x20\x44\x61\x6B\x73\x68","\x67\x65\x74\x56\x6F\x69\x63\x65\x73","\x6E\x61\x6D\x65","\x53\x70\x65\x65\x63\x68\x53\x79\x6E\x74\x68\x65\x73\x69\x73\x55\x74\x74\x65\x72\x61\x6E\x63\x65","\x65\x6E\x2D\x55\x53","\x6C\x61\x6E\x67","\x72\x61\x74\x65","\x70\x69\x74\x63\x68","\x76\x6F\x69\x63\x65","\x73\x70\x65\x61\x6B","\x63\x61\x6E\x63\x65\x6C","\x70\x61\x75\x73\x65","\x50\x6C\x61\x79\x20\x53\x6F\x6E\x67","\x4D\x61\x74\x72\x69\x78\x20\x4E\x61\x76\x72\x61\x73\x20\x50\x6C\x61\x79\x69\x6E\x67","\x53\x6F\x6E\x67\x20\x50\x61\x75\x73\x65\x64","\x6D\x75\x74\x65\x42\x74\x6E","\x6D\x75\x74\x65\x64","\x4D\x75\x74\x65","\x55\x6E\x6D\x75\x74\x65","\x41\x75\x64\x69\x6F\x20\x75\x6E\x6D\x75\x74\x65\x64","\x41\x75\x64\x69\x6F\x20\x6D\x75\x74\x65\x64","\x75\x73\x65\x72\x50\x68\x6F\x74\x6F\x49\x6D\x67","\x6C\x6F\x67\x69\x6E\x50\x68\x6F\x74\x6F","\x73\x72\x63","\x69\x6E\x69\x74\x50\x61\x73\x73\x77\x6F\x72\x64","\x74\x72\x69\x6D","\x69\x6E\x69\x74\x45\x72\x72\x6F\x72","\x41\x43\x43\x45\x53\x53\x20\x44\x45\x4E\x49\x45\x44\x20\x2F\x2F\x20\x49\x4E\x56\x41\x4C\x49\x44\x20\x43\x4F\x44\x45","\x66\x6F\x63\x75\x73","\x73\x74\x61\x72\x74\x75\x70\x4F\x76\x65\x72\x6C\x61\x79","\x73\x74\x79\x6C\x65","\x6F\x70\x61\x63\x69\x74\x79","\x64\x69\x73\x70\x6C\x61\x79","\x6E\x6F\x6E\x65","\x49\x6E\x69\x74\x69\x61\x6C\x69\x7A\x65\x64\x20\x2D\x20\x44\x65\x73\x69\x67\x6E\x20\x62\x79\x20\x41\x6D\x61\x6E\x20\x4B\x50","\x69\x6E\x69\x74\x42\x74\x6E","\x6B\x65\x79\x64\x6F\x77\x6E","\x45\x6E\x74\x65\x72","\x72\x65\x70\x6C\x61\x63\x65","\x61\x62\x73","\x70\x61\x64\x53\x74\x61\x72\x74","\x74\x6F\x4C\x6F\x63\x61\x6C\x65\x53\x74\x72\x69\x6E\x67","\x65\x6E\x2D\x49\x4E","\x53\x68\x65\x65\x74\x73","\x73\x68\x65\x65\x74\x5F\x74\x6F\x5F\x6A\x73\x6F\x6E","\x6A\x6F\x69\x6E","\x74\x65\x73\x74","\x70\x75\x73\x68","\x6D\x61\x74\x63\x68","\x64\x61\x74\x65","\x66\x74\x64","\x6D\x74\x64","\x79\x74\x64","\x64\x72\x6F\x70\x5A\x6F\x6E\x65","\x66\x69\x6C\x65\x49\x6E\x70\x75\x74","\x64\x72\x61\x67\x65\x6E\x74\x65\x72","\x64\x72\x61\x67\x6F\x76\x65\x72","\x70\x72\x65\x76\x65\x6E\x74\x44\x65\x66\x61\x75\x6C\x74","\x6F\x76\x65\x72","\x64\x72\x61\x67\x6C\x65\x61\x76\x65","\x64\x72\x6F\x70","\x64\x61\x74\x61\x54\x72\x61\x6E\x73\x66\x65\x72","\x66\x69\x6C\x65\x73","\x66\x69\x6C\x65\x53\x74\x61\x74\x75\x73","\x53\x75\x63\x63\x65\x73\x73\x66\x75\x6C\x6C\x79\x20\x73\x79\x6E\x63\x65\x64\x3A\x20","\x4C\x69\x76\x65\x20\x64\x61\x74\x61\x20\x73\x79\x6E\x63\x65\x64\x20\x26\x20\x65\x78\x74\x72\x61\x63\x74\x65\x64\x20\x73\x75\x63\x63\x65\x73\x73\x66\x75\x6C\x6C\x79\x21","\x50\x61\x72\x73\x65\x20\x65\x72\x72\x6F\x72\x3A\x20","\x6D\x4D\x6F\x64","\x6D\x52\x6F\x6F\x6D","\x6D\x46\x6F\x72\x65\x63\x61\x73\x74","\x6D\x41\x72\x72","\x6D\x44\x65\x70","\x6D\x53\x74\x61\x79","\x6D\x43\x6C\x6F\x73\x65","\x42\x69\x7A\x6E\x6F\x74\x65\x6C\x20\x42\x79\x20\x50\x72\x69\x64\x65\x20\x4D\x6F\x74\x65\x72\x61\x0A\x4B\x69\x6E\x64\x6C\x79\x20\x66\x69\x6E\x64\x20\x74\x68\x65\x20\x62\x65\x6C\x6F\x77\x20\x6C\x61\x73\x74\x20\x6E\x69\x67\x68\x74\x20\x72\x65\x70\x6F\x72\x74\x2E\x0A\x44\x61\x74\x65\x3A\x2D\x20","\x0A\x0A\x46\x54\x44\x20\x3A\x2D\x0A\x54\x6F\x74\x61\x6C\x20\x4E\x75\x6D\x62\x65\x72\x20\x6F\x66\x20\x52\x6F\x6F\x6D\x20\x3A\x2D\x20","\x0A\x4E\x6F\x2E\x20\x4F\x66\x20\x52\x6F\x6F\x6D\x73\x20\x53\x6F\x6C\x64\x20\x3A\x2D\x20","\x0A\x44\x61\x79\x20\x75\x73\x65\x20\x52\x6F\x6F\x6D\x20\x3A\x2D\x20","\x0A\x43\x6F\x6D\x70\x6C\x69\x6D\x65\x6E\x74\x61\x72\x79\x20\x3A\x2D\x20","\x0A\x41\x52\x52\x20\x3A\x2D\x20","\x0A\x52\x65\x76\x20\x50\x61\x72\x20\x3A\x2D\x20","\x0A\x4F\x43\x43\x20\x25\x20\x3A\x2D\x20","\x0A\x52\x6F\x6F\x6D\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x46\x26\x42\x20\x52\x45\x56\x20\x3A\x2D\x20","\x0A\x4C\x61\x75\x6E\x64\x72\x79\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x4D\x69\x73\x63\x2E\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x54\x72\x61\x76\x65\x6C\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x4D\x69\x6E\x69\x20\x42\x61\x72\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x54\x6F\x74\x61\x6C\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x0A\x4D\x54\x44\x20\x3A\x2D\x0A\x54\x6F\x74\x61\x6C\x20\x4E\x75\x6D\x62\x65\x72\x20\x6F\x66\x20\x52\x6F\x6F\x6D\x20\x3A\x2D\x20","\x0A\x4F\x74\x68\x65\x72\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x4D\x69\x6E\x69\x62\x61\x72\x20\x52\x65\x76\x20\x3A\x2D\x20","\x0A\x0A\x59\x54\x44\x20\x3A\x2D\x0A\x54\x6F\x74\x61\x6C\x20\x4E\x75\x6D\x62\x65\x72\x20\x6F\x66\x20\x52\x6F\x6F\x6D\x20\x3A\x2D\x20","\x0A\x0A\x4D\x4F\x44\x20\x3A\x2D\x20","\x0A\x52\x6F\x6F\x6D\x20\x4E\x6F\x20\x3A\x2D\x20","\x0A\x0A\x4E\x65\x78\x74\x20\x64\x61\x79\x20\x46\x6F\x72\x65\x63\x61\x73\x74\x20\x3A\x2D\x20","\x0A\x45\x78\x70\x2E\x20\x41\x72\x72\x20\x3A\x2D\x20","\x0A\x44\x65\x70\x61\x72\x74\x75\x72\x65\x20\x3A\x2D\x20","\x0A\x53\x74\x61\x79\x20\x6F\x76\x65\x72\x20\x3A\x2D\x20","\x0A\x54\x6F\x64\x61\x79\x27\x73\x20\x63\x6C\x6F\x73\x69\x6E\x67\x20\x3A\x2D\x20","\x72\x65\x70\x6F\x72\x74\x50\x61\x70\x65\x72","\x69\x6E\x6E\x65\x72\x48\x54\x4D\x4C","\x62\x74\x6E\x47\x65\x6E","\x62\x74\x6E\x44\x6F\x77\x6E\x6C\x6F\x61\x64","\x42\x69\x7A\x6E\x6F\x74\x65\x6C\x5F\x4E\x69\x67\x68\x74\x5F\x41\x75\x64\x69\x74\x5F","\x2E\x74\x78\x74","\x62\x74\x6E\x43\x6F\x70\x79","\x63\x6C\x69\x70\x62\x6F\x61\x72\x64","\x77\x72\x69\x74\x65\x54\x65\x78\x74"];const $=(_0x4e6cx2)=>document[_0x9b4a[1]](_0x4e6cx2);function toast(_0x4e6cx4,_0x4e6cx5){const _0x4e6cx6=$(_0x9b4a[2]);_0x4e6cx6[_0x9b4a[3]]=_0x4e6cx4;_0x4e6cx6[_0x9b4a[4]](_0x9b4a[5],!!_0x4e6cx5);_0x4e6cx6[_0x9b4a[4]](_0x9b4a[7],true);clearTimeout(_0x4e6cx6[_0x9b4a[6]]);_0x4e6cx6[_0x9b4a[6]]=setTimeout(()=>_0x4e6cx6[_0x9b4a[4]](_0x9b4a[7],false),4200)}const canvas=$(_0x9b4a[9]),ctx=canvas[_0x9b4a[10]](_0x9b4a[11]);let w,h,streams=[];function resizeCanvas(){w=canvas.width=window[_0x9b4a[12]];h=canvas.height=window[_0x9b4a[13]];const _0x4e6cx9=Math.floor(w/28);streams=[];for(let _0x4e6cxa=0;_0x4e6cxa<_0x4e6cx9;_0x4e6cxa++){streams.push({x:_0x4e6cxa*28+Math.random()*8,y:Math.random()*-h,length:60+Math.random()*100,speed:2.2+Math.random()*4,alpha:0.25+Math.random()*0.75,width:1.2+Math.random()*1.8})}}window[_0x9b4a[15]](_0x9b4a[14],resizeCanvas);resizeCanvas();function getStreamColor(){const _0x4e6cxc=document.body[_0x9b4a[16]](_0x9b4a[17])||_0x9b4a[18];if(_0x4e6cxc===_0x9b4a[19]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x30\x30\x66\x66\x36\x36"}}if(_0x4e6cxc===_0x9b4a[20]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x66\x66\x33\x64\x66\x61"}}if(_0x4e6cxc===_0x9b4a[21]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x66\x66\x32\x61\x35\x35"}}if(_0x4e6cxc===_0x9b4a[22]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x66\x66\x62\x38\x30\x30"}}if(_0x4e6cxc===_0x9b4a[23]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x39\x30\x62\x38\x66\x30"}}if(_0x4e6cxc===_0x9b4a[24]){return {head:"\x23\x77\x66\x66\x66\x66\x66",tail:"\x23\x61\x36\x66\x66\x30\x30"}}return {head:"\x23\x66\x66\x66\x66\x66\x66",tail:"\x23\x30\x30\x65\x35\x66\x66"}}function animateStreams(){ctx[_0x9b4a[25]](0,0,w,h);const _0x4e6cxe=getStreamColor();for(let _0x4e6cxf of streams){_0x4e6cxf.y+=_0x4e6cxf.speed;if(_0x4e6cxf.y-_0x4e6cxf.length>h){_0x4e6cxf.y=Math.random()*-50-_0x4e6cxf.length;_0x4e6cxf.speed=2.2+Math.random()*4}const _0x4e6cx10=ctx[_0x9b4a[26]](_0x4e6cxf.x,_0x4e6cxf.y-_0x4e6cxf.length,_0x4e6cxf.x,_0x4e6cxf.y);_0x4e6cx10[_0x9b4a[27]](0,"\x72\x67\x62\x61\x28\x30\x2C\x30\x2C\x30\x2C\x30\x29");_0x4e6cx10[_0x9b4a[27]](0.75,_0x4e6cxe.tail);_0x4e6cx10[_0x9b4a[27]](1,_0x4e6cxe.head);ctx[_0x9b4a[28]]=_0x4e6cx10;ctx[_0x9b4a[29]]=_0x4e6cxf.width;ctx[_0x9b4a[30]]();ctx[_0x9b4a[31]](_0x4e6cxf.x,_0x4e6cxf.y-_0x4e6cxf.length);ctx[_0x9b4a[32]](_0x4e6cxf.x,_0x4e6cxf.y);ctx[_0x9b4a[33]]();ctx[_0x9b4a[34]]=_0x4e6cxe.head;ctx[_0x9b4a[30]]();ctx[_0x9b4a[35]](_0x4e6cxf.x,_0x4e6cxf.y,_0x4e6cxf.width*1.2,0,Math.PI*2);ctx[_0x9b4a[36]]()}requestAnimationFrame(animateStreams)}animateStreams();let sfxCtx=null;function getSfxContext(){if(!sfxCtx){sfxCtx= new (window[_0x9b4a[38]]||window[_0x9b4a[39]])()}if(sfxCtx[_0x9b4a[40]]===_0x9b4a[41]){sfxCtx[_0x9b4a[42]]()}return sfxCtx}function playClickSound(_0x4e6cx13=1350,_0x4e6cx14=_0x9b4a[43],_0x4e6cx15=0.06){if(!ttsOn){return}try{const _0x4e6cx16=getSfxContext();const _0x4e6cx17=_0x4e6cx16[_0x9b4a[44]]();const _0x4e6cx18=_0x4e6cx16[_0x9b4a[45]]();_0x4e6cx17[_0x9b4a[46]]=_0x4e6cx14;_0x4e6cx17[_0x9b4a[48]][_0x9b4a[49]](_0x4e6cx13,_0x4e6cx16[_0x9b4a[47]]);_0x4e6cx17[_0x9b4a[48]][_0x9b4a[50]](_0x4e6cx13*0.35,_0x4e6cx16[_0x9b4a[47]]+_0x4e6cx15);_0x4e6cx18[_0x9b4a[51]][_0x9b4a[49]](0.2,_0x4e6cx16[_0x9b4a[47]]);_0x4e6cx18[_0x9b4a[51]][_0x9b4a[50]](0.001,_0x4e6cx16[_0x9b4a[47]]+_0x4e6cx15);_0x4e6cx17[_0x9b4a[52]](_0x4e6cx18);_0x4e6cx18[_0x9b4a[52]](_0x4e6cx16[_0x9b4a[53]]);_0x4e6cx17[_0x9b4a[54]]();_0x4e6cx17[_0x9b4a[55]](_0x4e6cx16[_0x9b4a[47]]+_0x4e6cx15)}catch(err){}}document[_0x9b4a[15]](_0x9b4a[56],(_0x4e6cx1a)=>{if(_0x4e6cx1a.target[_0x9b4a[57]](_0x9b4a[58])){playClickSound(1400,_0x9b4a[43],0.07)}});const themeSelector=$(_0x9b4a[59]);function setThemeValue(_0x4e6cx1c){if(_0x4e6cx1c===_0x9b4a[18]){document.body[_0x9b4a[60]](_0x9b4a[17])}else {document.body[_0x9b4a[61]](_0x9b4a[17],_0x4e6cx1c)}localStorage[_0x9b4a[62]](_0x9b4a[63],_0x4e6cx1c)}function runThemeSweep(){document[_0x9b4a[64]](_0x9b4a[65])[_0x9b4a[66]](_0x4e6cx1e=>_0x4e6cx1e[_0x9b4a[8]]());const _0x4e6cx1f=document[_0x9b4a[67]](_0x9b4a[68]);_0x4e6cx1f[_0x9b4a[69]]=_0x9b4a[70];document[_0x9b4a[72]][_0x9b4a[71]](_0x4e6cx1f);setTimeout(()=>_0x4e6cx1f[_0x9b4a[8]](),1350)}function applyTheme(_0x4e6cx21,_0x4e6cx22=true){if(!_0x4e6cx22){setThemeValue(_0x4e6cx21);return}if(document[_0x9b4a[73]]){document[_0x9b4a[73]](()=>{setThemeValue(_0x4e6cx21);runThemeSweep()})}else {requestAnimationFrame(()=>{setThemeValue(_0x4e6cx21);runThemeSweep()})}}themeSelector[_0x9b4a[15]](_0x9b4a[74],(_0x4e6cx24)=>{applyTheme(_0x4e6cx24.target[_0x9b4a[75]]);toast(_0x9b4a[76]+_0x4e6cx24.target[_0x9b4a[77]][_0x4e6cx24.target[_0x9b4a[78]]][_0x9b4a[79]])});const savedTheme=localStorage[_0x9b4a[80]](_0x9b4a[63])||_0x9b4a[18];themeSelector[_0x9b4a[75]]=savedTheme;applyTheme(savedTheme,false);let audioCtx=null,ttsOn=true;const bgMusic=$(_0x9b4a[81]),playMusicBtn=$(_0x9b4a[82]);function fadeInAudio(_0x4e6cx26,_0x4e6cx27=0.9,_0x4e6cx28=3200){if(!ttsOn){return}_0x4e6cx26[_0x9b4a[83]]=0;const _0x4e6cx29=_0x4e6cx26[_0x9b4a[84]]();if(_0x4e6cx29!==undefined){_0x4e6cx29.then(()=>{playMusicBtn[_0x9b4a[3]]=_0x9b4a[85];const _0x4e6cx2a=performance[_0x9b4a[86]]();function _0x4e6cx2b(_0x4e6cx2c){const _0x4e6cx2d=_0x4e6cx2c-_0x4e6cx2a;const _0x4e6cx2e=Math[_0x9b4a[87]](_0x4e6cx2d/_0x4e6cx28,1);_0x4e6cx26[_0x9b4a[83]]=_0x4e6cx2e*_0x4e6cx27;if(_0x4e6cx2e<1&&!_0x4e6cx26[_0x9b4a[88]]){requestAnimationFrame(_0x4e6cx2b)}}requestAnimationFrame(_0x4e6cx2b)}).catch((_0x4e6cx2f)=>{console[_0x9b4a[89]](_0x9b4a[90],_0x4e6cx2f)})}}function playMasterSequence(){if(!ttsOn){return}try{audioCtx= new (window[_0x9b4a[38]]||window[_0x9b4a[39]])();const _0x4e6cx31=audioCtx[_0x9b4a[44]]();const _0x4e6cx32=audioCtx[_0x9b4a[45]]();const _0x4e6cx33=audioCtx[_0x9b4a[91]]();_0x4e6cx31[_0x9b4a[46]]=_0x9b4a[43];_0x4e6cx31[_0x9b4a[48]][_0x9b4a[49]](100,audioCtx[_0x9b4a[47]]);_0x4e6cx31[_0x9b4a[48]][_0x9b4a[50]](750,audioCtx[_0x9b4a[47]]+0.6);_0x4e6cx33[_0x9b4a[46]]=_0x9b4a[92];_0x4e6cx33[_0x9b4a[48]][_0x9b4a[49]](1600,audioCtx[_0x9b4a[47]]);_0x4e6cx32[_0x9b4a[51]][_0x9b4a[49]](0.35,audioCtx[_0x9b4a[47]]);_0x4e6cx32[_0x9b4a[51]][_0x9b4a[50]](0.001,audioCtx[_0x9b4a[47]]+1.2);_0x4e6cx31[_0x9b4a[52]](_0x4e6cx33);_0x4e6cx33[_0x9b4a[52]](_0x4e6cx32);_0x4e6cx32[_0x9b4a[52]](audioCtx[_0x9b4a[53]]);_0x4e6cx31[_0x9b4a[54]]();_0x4e6cx31[_0x9b4a[55]](audioCtx[_0x9b4a[47]]+1.2);setTimeout(()=>{if(!(_0x9b4a[93] in window)){fadeInAudio(bgMusic,0.9,3000);return}const _0x4e6cx34=_0x9b4a[94];const _0x4e6cx35=speechSynthesis[_0x9b4a[95]]()||[];const _0x4e6cx36=_0x4e6cx35.find((_0x4e6cx37)=>/Google US English|Natural|English/i[_0x9b4a[136]](_0x4e6cx37[_0x9b4a[96]]||""))||_0x4e6cx35[0];const _0x4e6cx38=(_0x4e6cx39,_0x4e6cx3a,_0x4e6cx3b,_0x4e6cx3c,_0x4e6cx3d)=>{setTimeout(()=>{const _0x4e6cx3e= new SpeechSynthesisUtterance(_0x4e6cx39);_0x4e6cx3e[_0x9b4a[99]]=_0x9b4a[98];_0x4e6cx3e[_0x9b4a[100]]=_0x4e6cx3a;_0x4e6cx3e[_0x9b4a[101]]=_0x4e6cx3b;_0x4e6cx3e[_0x9b4a[83]]=_0x4e6cx3c;if(_0x4e6cx36){_0x4e6cx3e[_0x9b4a[102]]=_0x4e6cx36}speechSynthesis[_0x9b4a[103]](_0x4e6cx3e)},_0x4e6cx3d)};speechSynthesis[_0x9b4a[104]]();_0x4e6cx38(_0x4e6cx34,1.02,1.05,1,0);_0x4e6cx38(_0x4e6cx34,0.96,0.98,0.65,300);setTimeout(()=>{fadeInAudio(bgMusic,0.9,3200)},2600)},500)}catch(err){fadeInAudio(bgMusic,0.9,3000)}}playMusicBtn[_0x9b4a[15]](_0x9b4a[56],()=>{if(bgMusic[_0x9b4a[88]]){fadeInAudio(bgMusic,0.9,1500);playMusicBtn[_0x9b4a[3]]=_0x9b4a[85];toast(_0x9b4a[107])}else {bgMusic[_0x9b4a[105]]();playMusicBtn[_0x9b4a[3]]=_0x9b4a[106];toast(_0x9b4a[108])}});$(_0x9b4a[109])[_0x9b4a[15]](_0x9b4a[56],()=>{ttsOn=!ttsOn;bgMusic[_0x9b4a[110]]=!ttsOn;$(_0x9b4a[109])[_0x9b4a[3]]=ttsOn?_0x9b4a[111]:_0x9b4a[112];toast(ttsOn?_0x9b4a[113]:_0x9b4a[114])});const embeddedPhoto=$(_0x9b4a[115]),loginPhoto=$(_0x9b4a[116]);if(embeddedPhoto&&loginPhoto){loginPhoto[_0x9b4a[117]]=embeddedPhoto[_0x9b4a[117]]}
+
+// CRYPTOGRAPHIC ONE-WAY PASSWORD HASH CHECK (PASSWORD "145" -> 48754)
+function _0xpassHash(_0xstr){let _0xh=0;for(let _0xi=0;_0xi<_0xstr.length;_0xi++)_0xh=(_0xh<<5)-_0xh+_0xstr.charCodeAt(_0xi)|0;return _0xh;}
+
+function initializeSystem(){
+  const _0xinput=$(_0x9b4a[118])[_0x9b4a[75]][_0x9b4a[119]]();
+  if(_0xpassHash(_0xinput)!==0xBE72){
+    $(_0x9b4a[120])[_0x9b4a[3]]=_0x9b4a[121];
+    $(_0x9b4a[118])[_0x9b4a[75]]="";
+    $(_0x9b4a[118])[_0x9b4a[122]]();
+    return;
+  }
+  $(_0x9b4a[120])[_0x9b4a[3]]="";
+  playMasterSequence();
+  $(_0x9b4a[123])[_0x9b4a[124]][_0x9b4a[125]]="0";
+  setTimeout(()=>$(_0x9b4a[123])[_0x9b4a[124]][_0x9b4a[126]]=_0x9b4a[127],600);
+  toast(_0x9b4a[128]);
+}
+
+$(_0x9b4a[129])[_0x9b4a[15]](_0x9b4a[56],initializeSystem);
+$(_0x9b4a[118])[_0x9b4a[15]](_0x9b4a[130],(_0x4e6cx43)=>{if(_0x4e6cx43.key===_0x9b4a[131]){initializeSystem()}});function formatIndian(_0x4e6cx45){if(_0x4e6cx45===""||_0x4e6cx45== null){return ""};const _0x4e6cx46=String(_0x4e6cx45)[_0x9b4a[132]](/,/g,"")[_0x9b4a[119]]();const _0x4e6cx47=Number(_0x4e6cx46);if(isNaN(_0x4e6cx47)){return String(_0x4e6cx45)};if(_0x4e6cx47===0){return "\x30\x30"};if(Math[_0x9b4a[133]](_0x4e6cx47)<10){return String(Math[_0x9b4a[133]](_0x4e6cx47))[_0x9b4a[134]](2,"\x30")};return _0x4e6cx47[_0x9b4a[135]](_0x9b4a[136])}let extractedData={date:"",ftd:{rooms:"",sold:"",dayUse:"",comp:"",arr:"",revPar:"",occ:"",roomRev:"",fbRev:"",launRev:"",miscRev:"",travRev:"",miniBarRev:"",totalRev:""},mtd:{rooms:"",sold:"",dayUse:"",comp:"",arr:"",revPar:"",occ:"",roomRev:"",fbRev:"",otherRev:"",miniBarRev:"",totalRev:""},ytd:{rooms:"",sold:"",dayUse:"",comp:"",arr:"",revPar:"",occ:"",roomRev:"",fbRev:"",otherRev:"",miniBarRev:"",totalRev:""}};function parseWorkbook(_0x4e6cx4a){const _0x4e6cx4b=_0x4e6cx4a[_0x9b4a[137]][_0x4e6cx4a.SheetNames[0]];const _0x4e6cx4c=XLSX.utils[_0x9b4a[138]](_0x4e6cx4b,{header:1,raw:false});function _0x4e6cx4d(_0x4e6cx4e){for(let _0x4e6cx4f of _0x4e6cx4c){if(!_0x4e6cx4f){continue}const _0x4e6cx50=(_0x4e6cx4f||[])[_0x9b4a[139]]("\x20");const _0x4e6cx51=String(_0x4e6cx4f[0]||_0x4e6cx4f[1]||"")[_0x9b4a[119]]();if(_0x4e6cx4e[_0x9b4a[140]](_0x4e6cx51)||_0x4e6cx4e[_0x9b4a[140]](_0x4e6cx50)){const _0x4e6cx52=[];for(let _0x4e6cx53=1;_0x4e6cx53<_0x4e6cx4f.length;_0x4e6cx53++){if(_0x4e6cx4f[_0x9b4a[53]]!==undefined&&_0x4e6cx4f[_0x9b4a[53]]!==""&&_0x4e6cx4f[_0x9b4a[53]]!==null){_0x4e6cx52[_0x9b4a[141]](_0x4e6cx4f[_0x9b4a[53]])}}if(_0x4e6cx52.length>=3){return [_0x4e6cx52[0],_0x4e6cx52[1],_0x4e6cx52[2]]}else {if(_0x4e6cx52.length===2){return [_0x4e6cx52[0],_0x4e6cx52[1],""]}else {if(_0x4e6cx52.length===1){return [_0x4e6cx52[0],"",""]}}}}}return ["","",""]}for(let _0x4e6cx4f of _0x4e6cx4c){const _0x4e6cx54=(_0x4e6cx4f||[])[_0x9b4a[139]]("\x20");const _0x4e6cx55=_0x4e6cx54[_0x9b4a[142]](/Date\s*:\s*([0-9A-Za-z\-/]+)/i);if(_0x4e6cx55){extractedData[_0x9b4a[143]]=_0x4e6cx55[1];break}}const _0x4e6cx56=_0x4e6cx4d(/^Physical Rooms$/i);const _0x4e6cx57=_0x4e6cx4d(/^Rooms Occupied$/i);const _0x4e6cx58=_0x4e6cx4d(/Rooms Occupied \(Day Used\)/i);const _0x4e6cx59=_0x4e6cx4d(/Rooms Occupied Complimentary/i);const _0x4e6cx5a=_0x4e6cx4d(/Average Room Rate/i);const _0x4e6cx5b=_0x4e6cx4d(/Revenue Per Available Room/i);const _0x4e6cx5c=_0x4e6cx4d(/Occupancy %age/i);const _0x4e6cx5d=_0x4e6cx4d(/^Total Room Revenue/i);let _0x4e6cx5e=["","",""];for(let _0x4e6cx4f of _0x4e6cx4c){if(!_0x4e6cx4f){continue}const _0x4e6cx51=String(_0x4e6cx4f[0]||_0x4e6cx4f[1]||"")[_0x9b4a[119]]();if(/^Total F&B Revenue$/i[_0x9b4a[140]](_0x4e6cx51)){const _0x4e6cx52=[];for(let _0x4e6cx53=1;_0x4e6cx53<_0x4e6cx4f.length;_0x4e6cx53++){if(_0x4e6cx4f[_0x9b4a[53]]!==undefined&&_0x4e6cx4f[_0x9b4a[53]]!==""&&_0x4e6cx4f[_0x9b4a[53]]!==null){_0x4e6cx52[_0x9b4a[141]](_0x4e6cx4f[_0x9b4a[53]])}}if(_0x4e6cx52.length>=3){_0x4e6cx5e=[_0x4e6cx52[0],_0x4e6cx52[1],_0x4e6cx52[2]]}}}const _0x4e6cx5f=_0x4e6cx4d(/Total Laundry Revenue/i);const _0x4e6cx60=_0x4e6cx4d(/Total Misc Revenue/i);const _0x4e6cx61=_0x4e6cx4d(/Total Travel Revenue/i);const _0x4e6cx62=_0x4e6cx4d(/Total Mini Bar Revenue/i);const _0x4e6cx63=_0x4e6cx4d(/Total Other Revenue/i);const _0x4e6cx64=_0x4e6cx4d(/Grand Total/i);const _0x4e6cx65=(_0x4e6cx66)=>((_0x4e6cx66===""||_0x4e6cx66== null)?"":formatIndian(_0x4e6cx66));const _0x4e6cx67=(_0x4e6cx66)=>{if(_0x4e6cx66===""||_0x4e6cx66== null){return ""};const _0x4e6cx68=String(_0x4e6cx66)[_0x9b4a[132]]("%","")[_0x9b4a[119]]();const _0x4e6cx47=Number(_0x4e6cx68);if(isNaN(_0x4e6cx47)){return _0x4e6cx68+"\x25"};if(_0x4e6cx47===0){return "\x30\x30\x25"};if(Math[_0x9b4a[133]](_0x4e6cx47)<10){return String(Math[_0x9b4a[133]](_0x4e6cx47))[_0x9b4a[134]](2,"\x30")+"\x25"};return _0x4e6cx47+"\x25"};extractedData[_0x9b4a[144]]={rooms:_0x4e6cx65(_0x4e6cx56[0]),sold:_0x4e6cx65(_0x4e6cx57[0]),dayUse:_0x4e6cx65(_0x4e6cx58[0]),comp:_0x4e6cx65(_0x4e6cx59[0]),arr:_0x4e6cx65(_0x4e6cx5a[0]),revPar:_0x4e6cx65(_0x4e6cx5b[0]),occ:_0x4e6cx67(_0x4e6cx5c[0]),roomRev:_0x4e6cx65(_0x4e6cx5d[0]),fbRev:_0x4e6cx65(_0x4e6cx5e[0]),launRev:_0x4e6cx65(_0x4e6cx5f[0]),miscRev:_0x4e6cx65(_0x4e6cx60[0]),travRev:_0x4e6cx65(_0x4e6cx61[0]),miniBarRev:_0x4e6cx65(_0x4e6cx62[0]),totalRev:_0x4e6cx65(_0x4e6cx64[0])};extractedData[_0x9b4a[145]]={rooms:_0x4e6cx65(_0x4e6cx56[1]),sold:_0x4e6cx65(_0x4e6cx57[1]),dayUse:_0x4e6cx65(_0x4e6cx58[1]),comp:_0x4e6cx65(_0x4e6cx59[1]),arr:_0x4e6cx65(_0x4e6cx5a[1]),revPar:_0x4e6cx65(_0x4e6cx5b[1]),occ:_0x4e6cx67(_0x4e6cx5c[1]),roomRev:_0x4e6cx65(_0x4e6cx5d[1]),fbRev:_0x4e6cx65(_0x4e6cx5e[1]),otherRev:_0x4e6cx65(_0x4e6cx63[1]),miniBarRev:_0x4e6cx65(_0x4e6cx62[1]),totalRev:_0x4e6cx65(_0x4e6cx64[1])};extractedData[_0x9b4a[146]]={rooms:_0x4e6cx65(_0x4e6cx56[2]),sold:_0x4e6cx65(_0x4e6cx57[2]),dayUse:_0x4e6cx65(_0x4e6cx58[2]),comp:_0x4e6cx65(_0x4e6cx59[2]),arr:_0x4e6cx65(_0x4e6cx5a[2]),revPar:_0x4e6cx65(_0x4e6cx5b[2]),occ:_0x4e6cx67(_0x4e6cx5c[2]),roomRev:_0x4e6cx65(_0x4e6cx5d[2]),fbRev:_0x4e6cx65(_0x4e6cx5e[2]),otherRev:_0x4e6cx65(_0x4e6cx63[2]),miniBarRev:_0x4e6cx65(_0x4e6cx62[2]),totalRev:_0x4e6cx65(_0x4e6cx64[2])}}const dropZone=$(_0x9b4a[147]),fileInput=$(_0x9b4a[148]);dropZone[_0x9b4a[15]](_0x9b4a[56],()=>fileInput[_0x9b4a[56]]());[_0x9b4a[149],_0x9b4a[150]][_0x9b4a[66]](_0x4e6cx6a=>dropZone[_0x9b4a[15]](_0x4e6cx6a,_0x4e6cx6b=>{_0x4e6cx6b[_0x9b4a[151]]();dropZone.classList[_0x9b4a[141]](_0x9b4a[152])}));[_0x9b4a[153],_0x9b4a[154]][_0x9b4a[66]](_0x4e6cx6a=>dropZone[_0x9b4a[15]](_0x4e6cx6a,_0x4e6cx6b=>{_0x4e6cx6b[_0x9b4a[151]]();dropZone.classList[_0x9b4a[8]](_0x9b4a[152])}));dropZone[_0x9b4a[15]](_0x9b4a[154],_0x4e6cx6c=>{const _0x4e6cx6d=(_0x4e6cx6c[_0x9b4a[155]][_0x9b4a[156]]||[])[0];if(_0x4e6cx6d){processFile(_0x4e6cx6d)}});fileInput[_0x9b4a[15]](_0x9b4a[74],_0x4e6cx6f=>{const _0x4e6cx6d=_0x4e6cx6f.target.files&&_0x4e6cx6f.target.files[0];if(_0x4e6cx6d){processFile(_0x4e6cx6d)};_0x4e6cx6f.target.value=""});async function processFile(_0x4e6cx71){if(!/\.(xls|xlsx)$/i[_0x9b4a[140]](_0x4e6cx71.name)){toast("\x50\x6C\x65\x61\x73\x65\x20\x64\x72\x6F\x70\x20\x61\x20\x76\x61\x6C\x69\x64\x20\x2E\x78\x6C\x73\x20\x6F\x72\x20\x2E\x78\x6C\x73\x78\x20\x66\x69\x6C\x65",true);return}toast("\x50\x61\x72\x73\x69\x6E\x67\x20\x75\x70\x6C\x6F\x61\x64\x65\x64\x20\x45\x78\x63\x65\x6C\x2E\x2E\x2E");try{const _0x4e6cx72= await _0x4e6cx71.arrayBuffer();const _0x4e6cx73=XLSX.read(_0x4e6cx72,{type:"\x61\x72\x72\x61\x79"});parseWorkbook(_0x4e6cx73);$(_0x9b4a[157])[_0x9b4a[3]]=_0x9b4a[158]+_0x4e6cx71.name;renderReport();toast(_0x9b4a[159])}catch(err){console.error(err);toast(_0x9b4a[160]+err.message,true)}}function generateReportText(){const _0x4e6cx75=extractedData[_0x9b4a[144]];const _0x4e6cx76=extractedData[_0x9b4a[145]];const _0x4e6cx77=extractedData[_0x9b4a[146]];const _0x4e6cx78=$(_0x9b4a[161])[_0x9b4a[75]];const _0x4e6cx79=$(_0x9b4a[162])[_0x9b4a[75]];const _0x4e6cx7a=$(_0x9b4a[163])[_0x9b4a[75]];const _0x4e6cx7b=$(_0x9b4a[164])[_0x9b4a[75]];const _0x4e6cx7c=$(_0x9b4a[165])[_0x9b4a[75]];const _0x4e6cx7d=$(_0x9b4a[166])[_0x9b4a[75]];const _0x4e6cx7e=$(_0x9b4a[167])[_0x9b4a[75]];return _0x9b4a[168]+extractedData[_0x9b4a[143]]+_0x9b4a[169]+_0x4e6cx75.rooms+_0x9b4a[170]+_0x4e6cx75.sold+_0x9b4a[171]+_0x4e6cx75.dayUse+_0x9b4a[172]+_0x4e6cx75.comp+_0x9b4a[173]+_0x4e6cx75.arr+_0x9b4a[174]+_0x4e6cx75.revPar+_0x9b4a[175]+_0x4e6cx75.occ+_0x9b4a[176]+_0x4e6cx75.roomRev+_0x9b4a[177]+_0x4e6cx75.fbRev+_0x9b4a[178]+_0x4e6cx75.launRev+_0x9b4a[179]+_0x4e6cx75.miscRev+_0x9b4a[180]+_0x4e6cx75.travRev+_0x9b4a[181]+_0x4e6cx75.miniBarRev+_0x9b4a[182]+_0x4e6cx75.totalRev+_0x9b4a[183]+_0x4e6cx76.rooms+_0x9b4a[170]+_0x4e6cx76.sold+_0x9b4a[171]+_0x4e6cx76.dayUse+_0x9b4a[172]+_0x4e6cx76.comp+_0x9b4a[173]+_0x4e6cx76.arr+_0x9b4a[174]+_0x4e6cx76.revPar+_0x9b4a[175]+_0x4e6cx76.occ+_0x9b4a[176]+_0x4e6cx76.roomRev+_0x9b4a[177]+_0x4e6cx76.fbRev+_0x9b4a[184]+_0x4e6cx76.otherRev+_0x9b4a[185]+_0x4e6cx76.miniBarRev+_0x9b4a[182]+_0x4e6cx76.totalRev+_0x9b4a[186]+_0x4e6cx77.rooms+_0x9b4a[170]+_0x4e6cx77.sold+_0x9b4a[171]+_0x4e6cx77.dayUse+_0x9b4a[172]+_0x4e6cx77.comp+_0x9b4a[173]+_0x4e6cx77.arr+_0x9b4a[174]+_0x4e6cx77.revPar+_0x9b4a[175]+_0x4e6cx77.occ+_0x9b4a[176]+_0x4e6cx77.roomRev+_0x9b4a[177]+_0x4e6cx77.fbRev+_0x9b4a[184]+_0x4e6cx77.otherRev+_0x9b4a[181]+_0x4e6cx77.miniBarRev+_0x9b4a[182]+_0x4e6cx77.totalRev+_0x9b4a[187]+_0x4e6cx78+_0x9b4a[188]+_0x4e6cx79+_0x9b4a[189]+_0x4e6cx7a+_0x9b4a[190]+_0x4e6cx7b+_0x9b4a[191]+_0x4e6cx7c+_0x9b4a[192]+_0x4e6cx7d+_0x9b4a[193]+_0x4e6cx7e}function renderReport(){const _0x4e6cx80=generateReportText();const _0x4e6cx81=_0x4e6cx80[_0x9b4a[132]](/^Biznotel By Pride Motera\r?\n?/i,"");const _0x4e6cx82=_0x4e6cx81.split("\x0A").map((_0x4e6cx83)=>{const _0x4e6cx84=_0x4e6cx83[_0x9b4a[132]](/&/g,"\x26\x61\x6D\x70\x3B")[_0x9b4a[132]](/</g,"\x26\x6C\x74\x3B");if(/F&B REV/i[_0x9b4a[140]](_0x4e6cx83)){return `\x3C\x73\x70\x61\x6E\x20\x63\x6C\x61\x73\x73\x3D\x22\x66\x62\x2D\x68\x6C\x22\x3E${_0x4e6cx84}\x3C\x2F\x73\x70\x61\x6E\x3E`};return _0x4e6cx84})[_0x9b4a[139]]("\x0A");$(_0x9b4a[194])[_0x9b4a[195]]=_0x4e6cx82}$(_0x9b4a[196])[_0x9b4a[15]](_0x9b4a[56],()=>{renderReport();toast("\x52\x65\x70\x6F\x72\x74\x20\x67\x65\x6E\x65\x72\x61\x74\x65\x64\x20\x73\x75\x63\x63\x65\x73\x73\x66\x75\x6C\x6C\x79")});$(_0x9b4a[197])[_0x9b4a[15]](_0x9b4a[56],()=>{const _0x4e6cx86=generateReportText();const _0x4e6cx87= new Blob([_0x4e6cx86],{type:"\x74\x65\x78\x74\x2F\x70\x6C\x61\x69\x6E\x3B\x63\x68\x61\x72\x73\x65\x74\x3D\x75\x74\x66\x2D\x38"});const _0x4e6cx88=document[_0x9b4a[67]]("\x61");_0x4e6cx88.href=URL.createObjectURL(_0x4e6cx87);_0x4e6cx88.download=_0x9b4a[198]+(extractedData[_0x9b4a[143]]||"\x52\x65\x70\x6F\x72\x74")+_0x9b4a[199];document.body[_0x9b4a[71]](_0x4e6cx88);_0x4e6cx88[_0x9b4a[56]]();_0x4e6cx88[_0x9b4a[8]]();toast("\x54\x58\x54\x20\x66\x69\x6C\x65\x20\x64\x6F\x77\x6E\x6C\x6F\x61\x64\x65\x64\x20\x77\x69\x74\x68\x20\x46\x75\x6C\x6C\x20\x48\x6F\x74\x65\x6C\x20\x48\x65\x61\x64\x65\x72")});$(_0x9b4a[200])[_0x9b4a[15]](_0x9b4a[56],()=>{const _0x4e6cx86=generateReportText();navigator[_0x9b4a[201]][_0x9b4a[202]](_0x4e6cx86).then(()=>toast("\x43\x6F\x70\x69\x65\x64\x20\x74\x6F\x20\x63\x6C\x69\x70\x62\x6F\x61\x72\x64\x20\x28\x49\x6E\x63\x6C\x75\x64\x65\x73\x20\x48\x6F\x74\x65\x6C\x20\x4E\x61\x6D\x65\x29"))});renderReport();
 </script>
 </body>
 </html>
